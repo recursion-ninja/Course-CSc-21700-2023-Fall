@@ -15,6 +15,7 @@
  | **Credit Hours:** | 3 credits                                                             |
  | **Textbook:**     | *"Probability and Statistics for Computer Scientists"* 2nd Ed, Baron  |
  | **Format:**       | In-person                                                             |
+ | **Room:**         | NAC 7/227                                                             |
  | **Time:**         | [Tuesday & Thursday 2:00pm - 3:15pm][class-time]                      |
  | **Office Hours:** | [Tuesday 1:00pm - 2:00pm][office-time] or [by appointment][email]     |
  | **Zoom Info:**    | [Zoom Meeting ID: `743 2040 5246` Passcode: `0xC217FA11`][zoom]       |
