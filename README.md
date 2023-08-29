@@ -1,46 +1,44 @@
-# Course-CSc-21700-2023-Fall
- CSc 217 — Probability and Statistics for Computer Science: A City College Fall 2023 Course 
+## CSc 217 Probability and Statistics for Computer Science
 
+**The City College of New York**
 
-# CSc 21700 — Probability and Statistics for Computer Science: A City College Fall 2023 Course 
-## The City College of New York
-## Grove School of Engineering
-## Department of Computer Science
+**Grove School of Engineering**
 
- | Key               | Value                                                                                       |
- |:------------------|:--------------------------------------------------------------------------------------------|
- | **Instructor:**   | Alex Washburn                                                                               |
- | **Email:**        | [awashburn@ccny.cuny.edu][email]                                                            |
- | **Section:**      | [CSc 21700/53432/5][course-description]                                                     |
- | **Semester:**     | Fall 2023                                                                                   |
- | **Credit Hours:** | 3 credits                                                                                   |
- | **Textbook:**     | Michael Baron, *"Probability and Statistics for Computer Scientists"* (Second Edition)      |
- | **Format:**       | In-person                                                                                   |
- | **Time:**         | [Tuesday & Thursday 2:00pm - 3:15pm][class-time]                                            |
- | **Office Hours:** | [Tuesday 1:00pm - 2:00pm][office-time] or [by appointment][email]                           |
- | **Zoom Info:**    | [Zoom Meeting ID: `891 9980 7340` Passcode: `0xC217FA11`][zoom]                             |
- | **Course Page:**  | [github.com/recursion-ninja/Course-CSc-21700-2023-Fall][course-page]                        |
+**Department of Computer Science**
+
+ | Key               | Value                                                                 |
+ |:------------------|:----------------------------------------------------------------------|
+ | **Instructor:**   | Alex Washburn                                                         |
+ | **Email:**        | [teaching@recursion.ninja][email]                                     |
+ | **Section:**      | [CSc 21700/55291][course-description]                                 |
+ | **Semester:**     | Fall 2023                                                             |
+ | **Credit Hours:** | 3 credits                                                             |
+ | **Textbook:**     | *"Probability and Statistics for Computer Scientists"* 2nd Ed, Baron  |
+ | **Format:**       | In-person                                                             |
+ | **Time:**         | [Tuesday & Thursday 2:00pm - 3:15pm][class-time]                      |
+ | **Office Hours:** | [Tuesday 1:00pm - 2:00pm][office-time] or [by appointment][email]     |
+ | **Zoom Info:**    | [Zoom Meeting ID: `743 2040 5246` Passcode: `0xC217FA11`][zoom]       |
+ | **Course Page:**  | [github.com/recursion-ninja/Course-CSc-21700-2023-Fall][course-page]  |
 
 [class-time        ]: https://time.is/compare/0200PM_in_New_York
 [course-description]: https://www.ccny.cuny.edu/compsci/csc217_description
 [course-page       ]: https://github.com/recursion-ninja/Course-CSc-21700-2023-Fall
-[email             ]: mailto:awashburn@ccny.cuny.edu
+[email             ]: mailto:teaching@recursion.ninja
 [office-time       ]: https://time.is/compare/0100PM_in_New_York
-[zoom              ]: https://us02web.zoom.us/j/89199807340?pwd=Rnhwcktic0RCejJobG5ySmhyOXJHQT09
+[zoom              ]: https://us04web.zoom.us/j/74320405246?pwd=et7CzwbYtKxxRPCknrwTOshMLBQDDe.1
 
 
 # Table of Contents
 
   * [Course Description](#course-description)
-      * [Learning Objectives](#learning-objectives)
+      * [List of Topics](#list-of-topics)
   * [Course Schedule](#course-schedule)
   * [Assignments](#assignments)
       * [Mathematical Problem Sets](#mathematical-problem-sets)
-      * [Programing Lab Practica](#programing-lab-practica)
+      * [Programming Lab Practica](#programing-lab-practica)
       * [Miderm Examination 1](#miderm-examination-1)
       * [Miderm Examination 2](#miderm-examination-2)
       * [Group Project](#group-project)
-          * [Project Reporting](#project-reporting)
   * [Standard Information](#standard-information)
       * [Academic Violations](#academic-violations)
       * [Email](#email)
@@ -65,7 +63,7 @@
 
 The course can be thought of having three phases.
 The first phase comprises an introduction to the mathematical foundations of probability theory.
-Here students are introduced to concepts relavent in the application of probablity theory in computer science.
+Here students are introduced to concepts relevant in the application of probability theory in computer science.
 These concepts will be reienforce through mathematical homework assignments and this phase will conclude with the first midterm.
 The second phase builds upon the concepts of the first by introducing many common probability distributions.
 Students gain an understanding as to when different distributions relate to real world phenomona.
@@ -74,20 +72,16 @@ The second phase concludes with the second midterm.
 The final phase consists of a group project applying the techniques developed in the prior two phases.
 
 As the course progresses throughout the semester, the three phases of the course transition from pure mathematical theory to the technical practice of programming.
-The table below loosely conceptualizes the transitionary structure of the course.
+The table below loosely conceptualizes this transition.
 
 | **Phase**        | Theory | Practice |
 |:-----------------|:------:|:--------:|
 |  Foundations     | $1$ | $0$ |
 |  Distributions   | $\frac{1}{2}$ | $\frac{1}{2}$ |
-|  Actualizations  | $0$ | $0$ |
+|  Actualizations  | $0$ | $1$ |
 
 
-## Learning Objectives
-
-The learning goals for the course are *two-fold;* understanding the basic theory of mathematical probability and proficiency with the practice of applying probability in software simulations.
-
-### List of Topics:
+## List of Topics:
 
   1. Probability, Basic definitions:
       - Probabilistic models
@@ -147,56 +141,48 @@ The learning goals for the course are *two-fold;* understanding the basic theory
 
 # Course Schedule
 
-| **Tuesdays** | **Thursdays** | Tuesday Activities | Thursday Activities |
-|:------------:|:-------------:|:------------------------------------------|:------------------------------------------|
-|     08/29    |     08/31     | Syllabus,      Topic 1 | Topic 1 |
-|     09/05    |     09/07     | Homework №  1, Topic 2 | Topic 2 |
-|     09/12    |     09/14     | Homework №  2, Topic 2 | Topic 3 |
-|     09/19    |     09/21     | Homework №  3, Topic 3 | Topic 3 |
-|     09/26    |     09/28     | Homework №  4, Review | **Midterm I** |
-|     10/03    |     10/05     | Topic 4        | Topic 4 | 
-|              |     10/12     |                | Topic 5 |
-|     10/17    |     10/19     | Program №  1, Topic 5 | Topic 5 |
-|     10/24    |     10/26     | Program №  2, Topic 6 | Topic 6 |
-|     10/31    |     11/02     | Program №  3, Topic 7 | Topic 7 |
-|     11/07    |     11/09     | Program №  4, Skill Survey, Review | **Midterm II** |
-|     11/14    |     11/16     | Project grouping, Team Work Time | Project proposal |
-|     11/21    |               |                  | Progress Report №  1 |
-|     11/28    |     11/30     |                  | Progress Report №  2 |
-|     12/05    |     12/07     |                  | Progress Report №  3 |
-|     12/12    |     12/14     |                  | **Project Presentation** |
+| **Tuesday** | **Thursday** | Tuesday Activities | Thursday Activities |
+|:----------:|:-----------:|:------------------------------------------|:-----------------------------------------|
+|    08/29   |    08/31    | Topic 1, Syllabus | Topic 1 |
+|    09/05   |    09/07    | Topic 2, **Homework №  1** | Topic 2 |
+|    09/12   |    09/14    | Topic 2, **Homework №  2** | Topic 3 |
+|    09/19   |    09/21    | Topic 3, **Homework №  3** | Topic 3 |
+|    09/26   |    09/28    | **Homework №  4** | **Midterm I** |
+|    10/03   |    10/05    | Topic 4        | Topic 4 |
+|            |    10/12    |                | Topic 5 |
+|    10/17   |    10/19    | Topic 5, **Program №  1** | Topic 5 |
+|    10/24   |    10/26    | Topic 6, **Program №  2** | Topic 6 |
+|    10/31   |    11/02    | Topic 7, **Program №  3** | Topic 7 |
+|    11/07   |    11/09    | **Program №  4**, **Skill Survey** | **Midterm II** |
+|    11/14   |    11/16    | Project grouping  | **Project proposal** |
+|    11/21   |             |                   | 
+|    11/28   |    11/30    |                   | **Progress Report №  1** |
+|    12/05   |    12/07    |                   | **Progress Report №  2** |
+|    12/12   |    12/14    |                   | **Project Presentation**, **Peer Survey** |
 
 
 ## Due Dates
 
-Assignments are due at **`11:59PM`** on the date specified below.
+Assignments are submitted through BlackBoard and are due at **`11:59PM`** on the date specified below.
 
 | **Date**    | **Day**          | **Assignment**                     |
 |:-----------:|:-----------------|:-----------------------------------|
-|    08/27    |     Friday       | Skills and interests survey        |
-|    09/01    |     Wednesday    | GitHub account                     |
-|    09/03    |     Friday       | Social contract                    |
-|    09/08    |     Wednesday    | Product definition presentation    |
-|    10/31    |     Sunday       | MVP presentation script & slides   |
-|    12/15    |     Wednesday    | Final presentation script & slides |
-|    12/20    |     Sunday       | Peer assessment                    |
+|    09/05    |     Monday       | Problem Set №  1    |
+|    09/12    |     Monday       | Problem Set №  2    |
+|    09/19    |     Monday       | Problem Set №  3    |
+|    09/26    |     Monday       | Program Set №  4    |
+|    10/17    |     Monday       | Program Lab №  1    |
+|    10/24    |     Monday       | Program Lab №  2    |
+|    10/31    |     Monday       | Program Lab №  3    |
+|    11/07    |     Monday       | Program Lab №  4    |
+|    11/07    |     Monday       | Skill Survey        |
+|    11/16    |     Wednesday    | Project Proposal    |
+|    11/23    |     Wednesday    | Project Report №  1 |
+|    11/30    |     Wednesday    | Project Report №  2 |
+|    12/14    |     Wednesday    | Presentation        |
+|    12/17    |     Sunday       | Peer Survey         |
 
-| Homework - Problem Set №  1  |   5%           |
-| Homework - Problem Set №  2  |   5%           |
-| Homework - Problem Set №  3  |   5%           |
-| Homework - Program Set №  4  |   5%           |
-| Homework - Program Lab №  1
-| Homework - Program Lab №  2  |   5%           |
-| Homework - Program Lab №  3  |   5%           |
-| Homework - Program Lab №  4  |   5%           |
-| Midterm №  1                 |  20%           |
-| Midterm №  2                 |  20%           |
-| Group Project — Skill Survey         |   2%           |
-| Group Project — Project Report №  1  |   2%           |
-| Group Project — Project Report №  2  |   2%           |
-| Group Project — Project Report №  3  |   2%           |
-| **Group Project — Presentation**     |  10%           |
-| Group Project — Peer Comment         |   2%           |
+---
 
 
 # Assignments
@@ -226,7 +212,7 @@ The score earned by a student will be dertermined by five broad assessments of e
 Students will submit 4 homework assignment designed to tests a students understanding of probability theory.
 
 
-## Programing Lab Practica
+## Programming Lab Practica
 
 | Course Component             | Weighted Score |
 |:-----------------------------|---------------:|
@@ -235,7 +221,7 @@ Students will submit 4 homework assignment designed to tests a students understa
 | Homework - Program Lab №  3  |   5%           |
 | Homework - Program Lab №  4  |   5%           |
 
-Students will work through 4 programming assignments; each of these will be structured as a lab practicum. 
+Students will work through 4 programming assignments; each of these will be structured as a lab practicum.
 To complete the a practicum, students will follow guided instructions to produce a program or simulation demonstrating applications of probability.
 
 ## Miderm Examination 1
@@ -261,9 +247,9 @@ The second midterm will have the same format as the first midterm.
 | Course Component             | Weighted Score |
 |:-----------------------------|---------------:|
 | Group Project — Skill Survey         |   2%           |
+| Group Project — Project Proposal     |   2%           |
 | Group Project — Project Report №  1  |   2%           |
 | Group Project — Project Report №  2  |   2%           |
-| Group Project — Project Report №  3  |   2%           |
 | **Group Project — Presentation**     |  10%           |
 | Group Project — Peer Comment         |   2%           |
 
@@ -290,7 +276,7 @@ The group project can be subdivided into three phases:
         - Teams must submit a script / slides of their presentation *before* class begins on 12/14
         - Each team member must present an aspect of the project
         - The presentation should demonstrate the final and complete functionality of the project
-    - Team members will submit a confidential Peer Comment survey describing thier experiance working with thier peers.
+    - Team members will submit a confidential Peer Comment survey describing their experience working with their peers.
 
 
 ### Project Reporting
@@ -307,31 +293,24 @@ Each week students will report on the progress of their product. *Each* student 
 # Standard Information
 
 
-## Email 
-
-Emails to the instructor must be from a student's CUNY Hunter College email address to the instructor's CUNY email address [aw2918@hunter.cuny.edu][email] for [FERPA reasons](#family-educational-rights-and-privacy-act-ferpa).
-
-> **You must *include the class number* `CSCI-499` in the subject line of the email!**
-
-
 ## Academic Violations
 
 Hunter College regards acts of academic dishonesty (e.g., plagiarism, cheating on examinations, obtaining unfair advantage, and falsification of records and official documents) as serious offenses against the values of intellectual honesty. The college is committed to enforcing the CUNY Policy on Academic Integrity and will pursue cases of academic dishonesty according to the Hunter College Academic Integrity Procedures.
 Special attention is given to CONTRACT CHEATING (this is where students have work completed on their behalf which is then submitted for academic credit).
 
 
-## Computer Science Facilities & Labs 
+## Computer Science Facilities & Labs
 
-All computer science students can use any of the general-purpose labs throughout Hunter College. In addition, computer science majors and students enrolled in CSCI courses can an obtain an account on the Computer Science Department Network. More information can be found on the [Computer Science Department's website][cs-labs].
+All computer science students can use any of the general-purpose labs throughout City College. In addition, computer science majors and students enrolled in CSci courses can an obtain an account on the Computer Science Department Network. More information can be found on the [Computer Science Department's website][cs-labs].
 
-[cs-labs]: http://www.hunter.cuny.edu/csci/about-cs/computer-science-facilities-labs
+[cs-labs]: https://www.ccny.cuny.edu/compsci/computer-labs
 
 
 ## Counseling & Wellness Services
 
 Counseling & Wellness Services (CWS) provides mental health, health and wellness services aimed at enhancing students' quality of life and maximizing personal and academic growth and development. More information can be found on the [Counseling & Wellness Services website][ref-CWS].
 
-[ref-CWS]: http://www.hunter.cuny.edu/studentservices/counseling-and-wellness
+[ref-CWS]: https://www.ccny.cuny.edu/health-wellness
 
 
 ## Special Needs
@@ -341,20 +320,18 @@ Students with special needs should see me for accommodation.
 
 ## Sexual Misconduct
 
-In compliance with the CUNY Policy on Sexual Misconduct, Hunter College reaffirms the prohibition of any sexual misconduct, which includes sexual violence, sexual harassment, and gender-based harassment retaliation against students, employees, or visitors, as well as certain intimate relationships. Students who have experienced any form of sexual violence on or off campus (including CUNY-sponsored trips and events) are entitled to the rights outlined in the Bill of Rights for Hunter College.
+In compliance with the CUNY Policy on Sexual Misconduct, City College reaffirms the prohibition of any sexual misconduct, which includes sexual violence, sexual harassment, and gender-based harassment retaliation against students, employees, or visitors, as well as certain intimate relationships. Students who have experienced any form of sexual violence on or off campus (including CUNY-sponsored trips and events) are entitled to the rights outlined in the Bill of Rights for Hunter College.
 
-a. Sexual Violence: Students are strongly encouraged to immediately report the incident by calling 911, contacting NYPD Special Victims Division Hotline ([646-610-7272][phone-hotline]) or their local police precinct, or contacting the College's Public Safety Office ([212-772-4444][phone-safety]).
+a. Sexual Violence: Students are strongly encouraged to immediately report the incident by calling 911, contacting NYPD Special Victims Division Hotline ([646-610-7272][phone-hotline]) or their local police precinct, or contacting the College's Public Safety Office ([212-650-7777][phone-safety]).
 
-b. All Other Forms of Sexual Misconduct: Students are also encouraged to contact the College's Title IX Campus Coordinator, Dean John Rose ([jtrose@hunter.cuny.edu][email-rose] or [212-650-3262][phone-rose]) or Colleen Barry ([colleen.barry@hunter.cuny.edu][email-barry] or [212-772-4534][phone-barry]) and seek complimentary services through the Counseling and Wellness Services Office, Hunter East 1123. CUNY Policy on Sexual Misconduct Link:
+b. All Other Forms of Sexual Misconduct: Students are also encouraged to contact the College's Title IX Campus Coordinator, Diana Cuozzo ([jtrose@hunter.cuny.edu][email-cuozzo] or [212-650-7330][phone-cuozzo]) and seek complimentary services through the Counseling and Wellness Services Office. CUNY Policy on Sexual Misconduct Link:
 
 [http://www.cuny.edu/about/administration/offices/la/Policy-on-Sexual-Misconduct-12-1-14-with-links.pdf][misconduct]
 
-[email-barry  ]: mailto:colleen.barry@hunter.cuny.edu
-[email-rose   ]: mailto:jtrose@hunter.cuny.edu
-[phone-barry  ]: tel:2127724534
+[email-cuozzo ]: mailto:dcuozzo@ccny.cuny.edu
 [phone-hotline]: tel:6466107272
-[phone-rose   ]: tel:2126503262
-[phone-safety ]: tel:2127724444
+[phone-rose   ]: tel:2126507330
+[phone-safety ]: tel:2126507777
 [misconduct   ]: http://www.cuny.edu/about/administration/offices/la/Policy-on-Sexual-Misconduct-12-1-14-with-links.pdf
 
 
@@ -363,13 +340,13 @@ b. All Other Forms of Sexual Misconduct: Students are also encouraged to contact
 
 ## ADA Compliance
 
-In compliance with the American Disability Act of 1990 (ADA) and with Section 504 of the Rehabilitation Act of 1973, Hunter College is committed to ensuring educational parity and accommodations for all students with documented disabilities and / or medical conditions. It is recommended that all students with documented disabilities (Emotional, Medical, Physical and / or Learning) consult the Office of Accessibility located in Room E1124 to secure necessary academic accommodations. For further information and assistance please call ([212-772-4857][phone-ADA-1])/TTY ([212-650-3230][phone-ADA-2]).
+In compliance with the American Disability Act of 1990 (ADA) and with Section 504 of the Rehabilitation Act of 1973, Hunter College is committed to ensuring educational parity and accommodations for all students with documented disabilities and / or medical conditions. It is recommended that all students with documented disabilities (Emotional, Medical, Physical and / or Learning) consult the Office of Accessibility located in North Academic Center, Room 1/218 to secure necessary academic accommodations. For further information and assistance please call ([212-650-8441][phone-ADA-1])/TTY ([212-650-5913][phone-ADA-2]).
 
-[phone-ADA-1]: tel:2127724857
-[phone-ADA-2]: tel:2126503230
+[phone-ADA-1]: tel:2126508441
+[phone-ADA-2]: tel:2126505913
 
 
-## Family Educational Rights and Privacy Act (FERPA) 
+## Family Educational Rights and Privacy Act (FERPA)
 
 The Family Educational Rights and Privacy Act (FERPA) ([20 U.S.C. § 1232g; 34 CFR Part 99][ferpa-law]) is a Federal law that protects the privacy of student education records. The law applies to all schools that receive funds under an applicable program of the U.S. Department of Education.
 
@@ -385,7 +362,7 @@ After the hearing, if the school still decides not to amend the record, the pare
     - Appropriate parties in connection with financial aid to a student;
     - Organizations conducting certain studies for or on behalf of the school;
     - Accrediting organizations;
-    - To comply with a judicial order or lawfully issued subpoena; 
+    - To comply with a judicial order or lawfully issued subpoena;
     - Appropriate officials in cases of health and safety emergencies; and
     - State and local authorities, within a juvenile justice system, pursuant to specific State law.
 
