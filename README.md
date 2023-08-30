@@ -296,7 +296,7 @@ Each week students will report on the progress of their product. *Each* student 
 
 ## Academic Violations
 
-Hunter College regards acts of academic dishonesty (e.g., plagiarism, cheating on examinations, obtaining unfair advantage, and falsification of records and official documents) as serious offenses against the values of intellectual honesty. The college is committed to enforcing the CUNY Policy on Academic Integrity and will pursue cases of academic dishonesty according to the Hunter College Academic Integrity Procedures.
+City College regards acts of academic dishonesty (e.g., plagiarism, cheating on examinations, obtaining unfair advantage, and falsification of records and official documents) as serious offenses against the values of intellectual honesty. The college is committed to enforcing the CUNY Policy on Academic Integrity and will pursue cases of academic dishonesty according to the City College Academic Integrity Procedures.
 Special attention is given to CONTRACT CHEATING (this is where students have work completed on their behalf which is then submitted for academic credit).
 
 
@@ -321,7 +321,7 @@ Students with special needs should see me for accommodation.
 
 ## Sexual Misconduct
 
-In compliance with the CUNY Policy on Sexual Misconduct, City College reaffirms the prohibition of any sexual misconduct, which includes sexual violence, sexual harassment, and gender-based harassment retaliation against students, employees, or visitors, as well as certain intimate relationships. Students who have experienced any form of sexual violence on or off campus (including CUNY-sponsored trips and events) are entitled to the rights outlined in the Bill of Rights for Hunter College.
+In compliance with the CUNY Policy on Sexual Misconduct, City College reaffirms the prohibition of any sexual misconduct, which includes sexual violence, sexual harassment, and gender-based harassment retaliation against students, employees, or visitors, as well as certain intimate relationships. Students who have experienced any form of sexual violence on or off campus (including CUNY-sponsored trips and events) are entitled to the rights outlined in the Bill of Rights for City College.
 
 a. Sexual Violence: Students are strongly encouraged to immediately report the incident by calling 911, contacting NYPD Special Victims Division Hotline ([646-610-7272][phone-hotline]) or their local police precinct, or contacting the College's Public Safety Office ([212-650-7777][phone-safety]).
 
@@ -341,7 +341,7 @@ b. All Other Forms of Sexual Misconduct: Students are also encouraged to contact
 
 ## ADA Compliance
 
-In compliance with the American Disability Act of 1990 (ADA) and with Section 504 of the Rehabilitation Act of 1973, Hunter College is committed to ensuring educational parity and accommodations for all students with documented disabilities and / or medical conditions. It is recommended that all students with documented disabilities (Emotional, Medical, Physical and / or Learning) consult the Office of Accessibility located in North Academic Center, Room 1/218 to secure necessary academic accommodations. For further information and assistance please call ([212-650-8441][phone-ADA-1])/TTY ([212-650-5913][phone-ADA-2]).
+In compliance with the American Disability Act of 1990 (ADA) and with Section 504 of the Rehabilitation Act of 1973, City College is committed to ensuring educational parity and accommodations for all students with documented disabilities and / or medical conditions. It is recommended that all students with documented disabilities (Emotional, Medical, Physical and / or Learning) consult the Office of Accessibility located in North Academic Center, Room 1/218 to secure necessary academic accommodations. For further information and assistance please call ([212-650-8441][phone-ADA-1])/TTY ([212-650-5913][phone-ADA-2]).
 
 [phone-ADA-1]: tel:2126508441
 [phone-ADA-2]: tel:2126505913
