@@ -1,0 +1,152 @@
+\documentclass{ProblemSetCUNY}
+\usepackage{bussproofs} \EnableBpAbbreviations
+\usepackage{mathrsfs}
+\usepackage{stix}
+\usepackage{pgffor}
+
+\usepackage{tabstackengine}
+\TABstackMath
+\TABbinary
+
+\AssignmentNumber{1}%
+\CourseName{Probability and Statistics for Computer Science}
+\CourseNumber{217}
+\InstructorName{Alex Washburn}
+\DueDateYear{2023}
+\DueDateMonth{09}
+\DueDateDay{05}
+
+
+%\newenvironment{\ContactListing}[args]{begdef}{enddef}
+
+\newcommand{\ProofLabelOne}[1]{\RightLabel{\ensuremath{\Parens{\mathrm{\textsc{#1}}}}\xspace}}
+\newcommand{\ProofLabelTwo}[2]{\RightLabel{\ensuremath{\Parens{\mathrm{\textsc{#1}}}\Parens{\mathrm{#2}}}\xspace}}
+
+\newcommand{\LogicCase}[1]{\item \textbf{Case}~#1:\newline}
+
+\newcommand{\DerivationFormat}[2]{\hfill\qquad#2\textsc{#1}}
+\newcommand{\Derivation}[2]{\DerivationFormat{#1}{#2~\ensuremath{\ruledelayed}~}}
+
+\newcommand{\AxiomCL}[1]{\DerivationFormat{Axiom~#1}{}}
+\newcommand{\Factivity}{\DerivationFormat{Factivity}{}}
+\newcommand{\Given}{\DerivationFormat{Hypothesis}{}}
+\newcommand{\Contrapositive}{\DerivationFormat{Contrapositive}{}}
+\newcommand{\DoubleNegation}{\DerivationFormat{Double Negation}{}}
+\newcommand{\DeMorgans}{\DerivationFormat{DeMorgans}{}}
+\newcommand{\Necitation}[1]{\Derivation{Necitation}{#1}}
+\newcommand{\Distribution}[1]{\Derivation{Distribution}{#1}}
+\newcommand{\Reflexivity}[1]{\Derivation{Reflexivity}{#1}}
+\newcommand{\ConDef}[1]{\Derivation{Connective Definition}{#1}}
+\newcommand{\Contradiction}[1]{\ensuremath{\neg \phi \land \phi}\Derivation{Contradiction}{\ensuremath{\phi = #1}}}
+\newcommand{\DedThm}[1]{\Derivation{Deduction Theorem}{#1}}
+\newcommand{\ModPon}[2]{\Derivation{Modus Ponens}{#1, #2}}
+\newcommand{\Syllogism}[2]{\Derivation{Syllogism}{#1, #2}}
+\newcommand{\Theorem}[2]{\DerivationFormat{Theorem~--~Lecture~#1,~Page~#2}{}}
+
+\newcommand{\R}[2]{\ensuremath{\World{#1}\mathrel{R}\World{#2}}\xspace}
+\newcommand{\Tr}[2]{\ensuremath{\tau\Parens{#1,\,#2}\xspace}}
+\newcommand{\T}[1]{\ensuremath{\tau\Parens{#1}\xspace}}
+\newcommand{\Prob}[1]{\ensuremath{P\Parens{#1}}\xspace}
+\newcommand{\RandVar}[1]{\ensuremath{\mathbf{#1}}\xspace}
+\newcommand{\DistMap}[2]{~#1&\mapsto~~#2\\}
+\newcommand{\DistCondition}[2]{~#1&\text{\normalfont iff}~~#2\\}
+
+
+\newcommand{\One}{\ensuremath{\textbf{1}}\xspace}
+
+\newcommand{\Countermodel}[4]{%
+\textbf{Countermodel} $\mathcal{K}$ in #1:%
+\begin{itemize}%
+\item \ensuremath{W = \SetNote{\World{0}%
+\foreach \n in {1,...,#2}{,~\World{\n}}%
+}}%
+\item \ensuremath{\mathrel{R}~=~#3}%
+\item #4%
+\end{itemize}%
+}
+
+\begin{document}
+\CoverPage%
+
+
+\Problem{%
+Each year an employee at a company will receive a salary increase.\\%
+The amount an employee's salary increases each year is a random variable \RandVar{X}.~%
+The probability distribution for an employee's salary increase is as follows:%
+\begin{equation*}
+\Prob{\RandVar{X}} =
+\begin{cases}
+\DistMap{\frac{2}{8}}{1\%}
+\DistMap{\frac{3}{8}}{2\%}
+\DistMap{\frac{2}{8}}{3\%}
+\DistMap{\frac{1}{8}}{5\%}
+\end{cases}
+\end{equation*}
+\textit{What is the probability that after five years (five salary increases), a cumulative salary increase of $x \ge 10\%$ occurs?}
+}
+
+
+\Problem{%
+The Federal Reserve Bank of the Unitded States targets an annual inflation rate of 2\%.
+This means that for an employee's salary to purchase the same amount of goods and services next year, their salary must increase by 2\% to match the 2\% expansion of the money supply within the economy induced by the Federal Reserve Bank.
+One measure of purchasing power used by economists to mediate difference in currency exchange rates and inflationary effects of currencies is Purchasing Power Parity (PPP).
+Each year an employee at a company will receive an adjustment in their salary's PPP.\\
+The amount an employee salary's PPP adjusts by each year is a random variable \RandVar{Y}.
+The probability distribution for a PPP adjustment is as follows:%
+\begin{equation*}
+\Prob{\RandVar{Y}} =
+\begin{cases}
+\DistMap{\frac{2}{8}}{-1\%}
+\DistMap{\frac{3}{8}}{\pm0\%}
+\DistMap{\frac{2}{8}}{+1\%}
+\DistMap{\frac{1}{8}}{+3\%}
+\end{cases}
+\end{equation*}\\[5mm]
+It is desirable for an employee's PPP to increase overtime as they accumulate skills and knowledge, commonly known as ``beating inflation.''\\[5mm]
+\textit{What is the probability that after five years (five PPP adjustments), a cumulative PPP adjustment $x$ ``beats inflation''; i.e. $x > 0\%$?}
+}
+
+
+\Problem{%
+Each year, an employee who switches employment from one company to another will receive a 10\% salary increase ($+8\%$ PPP) but will not receive a raise that year.
+Hence, a simple strategy to maximize earning potential is to \textit{jump} between companies with relative frequency.
+Unfortunately, an employee does not always have the opportunity to switch employment each year, and instead they must \textit{stay} with their current employer and receive the PPP adjustment \RandVar{Y} from Problem 2.
+The opportunity to switch employment is a random variable \RandVar{S} with the probability distribution:
+\begin{equation*}
+\Prob{\RandVar{S}} =
+\begin{cases}
+\DistMap{\frac{1}{2}}{\textit{Jump}: +8\%~\text{PPP}} 
+\DistMap{\frac{1}{2}}{\textit{Stay}\;\;: \Prob{\RandVar{Y}}}
+\end{cases}
+\end{equation*}\\[5mm]
+\textit{What is the probability an employee utilizing this ``job-jumping'' strategy for one year (at most one job jump) receives a PPP adjustment $x$ which ``beats inflation;'' i.e $x > 0\%$?}
+}
+
+\Problem{%
+Shockingly, employeers are not likely to higher employees who jump between employeers frequently.
+The more recently an employee has jumped between employeers the less likely they are to be able to find an opportunity to jump to a new employeer this year.
+The opportunity to jump between employment is a random variable \RandVar{J} with the probability distribution:
+\begin{equation*}
+\Prob{\RandVar{J}} =
+\begin{cases}
+\DistCondition{\frac{1}{6}}{\text{Did \emph{Jump} last year}} 
+\DistCondition{\frac{2}{6}}{\text{No \emph{Jump} last year}} 
+\DistCondition{\frac{3}{6}}{\text{No \emph{Jump} last year nor the previous year}} 
+\end{cases}
+\end{equation*}\\[5mm]
+As with Problem 3, if an employee does not have the opportunity to \emph{jump}, then they must \textit{stay} with their current employer and receive the PPP adjustment \RandVar{Y} from Problem 2.\\[5mm]
+\textit{What is the probability that after five years (five PPP adjustments), a cumulative PPP adjustment $x \ge 10\%$ occurs?}
+}
+
+\StartExtraCredit
+\Problem{%
+Which is the most preferable from these mutually exclusive options?\\[5mm]%
+\setstretch{1.7}
+\hspace*{1cm}$\tabbedLongunderstack[l]{
+\,\heartsuit\,\quad\text{Pursue your passion}\\
+\;\$\:\quad\text{Take the money}%
+}$%
+}
+
+
+\end{document}

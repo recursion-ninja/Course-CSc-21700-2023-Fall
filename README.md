@@ -155,11 +155,11 @@ The table below loosely conceptualizes this transition.
 |    10/24   |    10/26    | Topic 6, **Program №  2** | Topic 6 |
 |    10/31   |    11/02    | Topic 7, **Program №  3** | Topic 7 |
 |    11/07   |    11/09    | **Program №  4**, **Skill Survey** | **Midterm II** |
-|    11/14   |    11/16    | Project grouping  | **Project proposal** |
-|    11/21   |             |                   | 
+|    11/14   |    11/16    | Project grouping  | **Proposal Presentation** |
+|    11/21   |             |                   | |
 |    11/28   |    11/30    |                   | **Progress Report №  1** |
 |    12/05   |    12/07    |                   | **Progress Report №  2** |
-|    12/12   |    12/14    |                   | **Project Presentation**, **Peer Survey** |
+|    12/12   |    12/14    |                   | **Final Presentation**, **Peer Survey** |
 
 
 ## Due Dates
@@ -203,56 +203,56 @@ The score earned by a student will be dertermined by five broad assessments of e
 
 ## Mathematical Problem Sets
 
-| Course Component             | Weighted Score |
-|:-----------------------------|---------------:|
-| Homework - Problem Set №  1  |   5%           |
-| Homework - Problem Set №  2  |   5%           |
-| Homework - Problem Set №  3  |   5%           |
-| Homework - Program Set №  4  |   5%           |
+| Course Component  | Weighted Score |
+|:------------------|---------------:|
+| Problem Set №  1  |   5%           |
+| Problem Set №  2  |   5%           |
+| Problem Set №  3  |   5%           |
+| Program Set №  4  |   5%           |
 
 Students will submit 4 homework assignment designed to tests a students understanding of probability theory.
 
 
 ## Programming Lab Practica
 
-| Course Component             | Weighted Score |
-|:-----------------------------|---------------:|
-| Homework - Program Lab №  1  |   5%           |
-| Homework - Program Lab №  2  |   5%           |
-| Homework - Program Lab №  3  |   5%           |
-| Homework - Program Lab №  4  |   5%           |
+| Course Component  | Weighted Score |
+|:------------------|---------------:|
+| Program Lab №  1  |   5%           |
+| Program Lab №  2  |   5%           |
+| Program Lab №  3  |   5%           |
+| Program Lab №  4  |   5%           |
 
 Students will work through 4 programming assignments; each of these will be structured as a lab practicum.
 To complete the a practicum, students will follow guided instructions to produce a program or simulation demonstrating applications of probability.
 
 ## Miderm Examination 1
 
-| Course Component             | Weighted Score |
-|:-----------------------------|---------------:|
-| Midterm №  1                 |  20%           |
+| Course Component  | Weighted Score |
+|:------------------|---------------:|
+| Midterm №  1      |  20%           |
 
 Midterms will be proctored in-person during standard class time.
 
 
 ## Miderm Examination 2
 
-| Course Component             | Weighted Score |
-|:-----------------------------|---------------:|
-| Midterm №  2                 |  20%           |
+| Course Component  | Weighted Score |
+|:------------------|---------------:|
+| Midterm №  2      |  20%           |
 
 The second midterm will have the same format as the first midterm.
 
 
 ## Group Project
 
-| Course Component             | Weighted Score |
-|:-----------------------------|---------------:|
-| Group Project — Skill Survey         |   2%           |
-| Group Project — Project Proposal     |   2%           |
-| Group Project — Project Report №  1  |   2%           |
-| Group Project — Project Report №  2  |   2%           |
-| **Group Project — Presentation**     |  10%           |
-| Group Project — Peer Comment         |   2%           |
+| Course Component     | Weighted Score |
+|:---------------------|---------------:|
+| Skill Survey         |   2%           |
+| Project Proposal     |   2%           |
+| Progress Report №  1 |   2%           |
+| Progress Report №  2 |   2%           |
+| Final Presentation   |  10%           |
+| Peer Comment         |   2%           |
 
 There will be a group project during the last third of the semester, comprising five weeks.
 The group project can be subdivided into three phases:
@@ -283,10 +283,6 @@ The group project can be subdivided into three phases:
 ### Project Reporting
 
 Each week students will report on the progress of their product. *Each* student is expected to report on the contributions they made since the *last* product report, and state their planned contributions to complete for the *next* project report. After team members have reported on their recent and tenetive contributions, the floor will be opened up for any team member to solicit assistance or feedback on one or more technical issues they are experiencing. The instructor or their peers will attempt to provide them with assistance addressing their issue(s). Students who can provide guidance to members of another tem will be given additional consideration on their project reporting for that week.
-
-
-
-
 
 
 
