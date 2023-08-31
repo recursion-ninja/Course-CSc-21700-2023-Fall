@@ -52,6 +52,10 @@
 \newcommand{\DistCondition}[2]{~#1&\text{\normalfont iff}~~#2\\}
 
 
+\newcommand{\Heads}{\ensuremath{\mathtt{H}}\xspace}
+\newcommand{\Tails}{\ensuremath{\mathtt{T}}\xspace}
+
+
 \newcommand{\One}{\ensuremath{\textbf{1}}\xspace}
 
 \newcommand{\Countermodel}[4]{%
@@ -68,75 +72,58 @@
 \begin{document}
 \CoverPage%
 
+\setstretch{1.2}
 
 \Problem{%
-Each year an employee at a company will receive a salary increase.\\%
-The amount an employee's salary increases each year is a random variable \RandVar{X}.~%
-The probability distribution for an employee's salary increase is as follows:%
-\begin{equation*}
-\Prob{\RandVar{X}} =
-\begin{cases}
-\DistMap{\frac{2}{8}}{1\%}
-\DistMap{\frac{3}{8}}{2\%}
-\DistMap{\frac{2}{8}}{3\%}
-\DistMap{\frac{1}{8}}{5\%}
-\end{cases}
-\end{equation*}
-\textit{What is the probability that after five years (five salary increases), a cumulative salary increase of $x \ge 10\%$ occurs?}
+You flip a fair coin 4 times.\\
+All flips are mutually independent and have outcomes $\Omega = \SetNote{\Heads,\,\Tails}$.\\
+Determine the probability of the events below.\\[5mm]
+\textit{Hint: Draw a table enumerating the all possible outcomes of 4 flips.}
 }
 
+\SubProblem{Four heads: \Parens{\Heads,\,\Heads,\,\Heads,\,\Heads}}
 
-\Problem{%
-The Federal Reserve Bank of the Unitded States targets an annual inflation rate of 2\%.
-This means that for an employee's salary to purchase the same amount of goods and services next year, their salary must increase by 2\% to match the 2\% expansion of the money supply within the economy induced by the Federal Reserve Bank.
-One measure of purchasing power used by economists to mediate difference in currency exchange rates and inflationary effects of currencies is Purchasing Power Parity (PPP).
-Each year an employee at a company will receive an adjustment in their salary's PPP.\\
-The amount an employee salary's PPP adjusts by each year is a random variable \RandVar{Y}.
-The probability distribution for a PPP adjustment is as follows:%
-\begin{equation*}
-\Prob{\RandVar{Y}} =
-\begin{cases}
-\DistMap{\frac{2}{8}}{-1\%}
-\DistMap{\frac{3}{8}}{\pm0\%}
-\DistMap{\frac{2}{8}}{+1\%}
-\DistMap{\frac{1}{8}}{+3\%}
-\end{cases}
-\end{equation*}\\[5mm]
-It is desirable for an employee's PPP to increase overtime as they accumulate skills and knowledge, commonly known as ``beating inflation.''\\[5mm]
-\textit{What is the probability that after five years (five PPP adjustments), a cumulative PPP adjustment $x$ ``beats inflation''; i.e. $x > 0\%$?}
-}
+\SubProblem{The sequence: \Parens{\Heads,\,\Tails,\,\Heads,\,\Tails}}
+
+\SubProblem{Any sequence with $3~\Heads$ and $1~\Tails$}
+
+\SubProblem{Any sequence where the number of \Heads is greater than or equal to \Tails}
+
+
+\newcommand{\Die}[1]{\ensuremath{\mathbf{D}_{#1}}\xspace}
+\newcommand{\Above}[1]{\ensuremath{\overline{#1}}\xspace}
+\newcommand{\Below}[1]{\ensuremath{\underline{#1}}\xspace}
+\newcommand{\Num}[1]{\ensuremath{\mathbb{#1}}\xspace}
+\newcommand{\NumA}[1]{\ensuremath{\overline{\Num{#1}}}\xspace}
+\newcommand{\NumB}[1]{\ensuremath{\underline{\Num{#1}}}\xspace}
+
 
 
 \Problem{%
-Each year, an employee who switches employment from one company to another will receive a 10\% salary increase ($+8\%$ PPP) but will not receive a raise that year.
-Hence, a simple strategy to maximize earning potential is to \textit{jump} between companies with relative frequency.
-Unfortunately, an employee does not always have the opportunity to switch employment each year, and instead they must \textit{stay} with their current employer and receive the PPP adjustment \RandVar{Y} from Problem 2.
-The opportunity to switch employment is a random variable \RandVar{S} with the probability distribution:
-\begin{equation*}
-\Prob{\RandVar{S}} =
-\begin{cases}
-\DistMap{\frac{1}{2}}{\textit{Jump}: +8\%~\text{PPP}} 
-\DistMap{\frac{1}{2}}{\textit{Stay}\;\;: \Prob{\RandVar{Y}}}
-\end{cases}
-\end{equation*}\\[5mm]
-\textit{What is the probability an employee utilizing this ``job-jumping'' strategy for one year (at most one job jump) receives a PPP adjustment $x$ which ``beats inflation;'' i.e $x > 0\%$?}
+You throw two fair, 6-faced dice, one green and one blue, called \Die{1} \& \Die{2}.\\
+The result of each die is independent of the other.\\
+$\Die{1} \text{ has outcomes } \Omega_{\Die{1}} = \SetNote{\NumA{1},\,\NumA{2},\,\NumA{3},\,\NumA{4},\,\NumA{5},\,\NumA{6}}$.\\
+$\Die{2} \text{ has outcomes } \Omega_{\Die{2}} = \SetNote{\NumB{1},\,\NumB{2},\,\NumB{3},\,\NumB{4},\,\NumB{5},\,\NumB{6}}$.\\
+Determine the probability of the events below.\\[5mm]
+\textit{Hint: Draw a $6 \times 6$ grid enumerating the all possible rolls of the dice.}
 }
 
+
+\SubProblem{At least one 3 occurs; $\Prob{\Die{1} = \NumA{3}}$ or $\Prob{\Die{2} = \NumB{3}}$}
+
+\SubProblem{The larger of the two dice is greater than 4; $\Prob{\max\Parens{\Die{1},\,\Die{2}} > \Num{4}}$}
+
+\SubProblem{The faces of the dice match; $\Prob{\Die{1} = \Die{2}}$}
+
+\SubProblem{The sum of the dice is 7; $\Prob{\Die{1} + \Die{2} = \Num{7}}$}
+
 \Problem{%
-Shockingly, employeers are not likely to higher employees who jump between employeers frequently.
-The more recently an employee has jumped between employeers the less likely they are to be able to find an opportunity to jump to a new employeer this year.
-The opportunity to jump between employment is a random variable \RandVar{J} with the probability distribution:
-\begin{equation*}
-\Prob{\RandVar{J}} =
-\begin{cases}
-\DistCondition{\frac{1}{6}}{\text{Did \emph{Jump} last year}} 
-\DistCondition{\frac{2}{6}}{\text{No \emph{Jump} last year}} 
-\DistCondition{\frac{3}{6}}{\text{No \emph{Jump} last year nor the previous year}} 
-\end{cases}
-\end{equation*}\\[5mm]
-As with Problem 3, if an employee does not have the opportunity to \emph{jump}, then they must \textit{stay} with their current employer and receive the PPP adjustment \RandVar{Y} from Problem 2.\\[5mm]
-\textit{What is the probability that after five years (five PPP adjustments), a cumulative PPP adjustment $x \ge 10\%$ occurs?}
+You the same \Die{1} and \Die{2} from Problem 2. However, this time you are using \Die{1} and \Die{2} as the dice to play the game of Monopoly. In the game of Monopoly, if you ``roll doubles,'' meaning that the faces of the dice are the same number, then you get to roll the dice again. You can roll the dice a maximum of three times, if you happen to ``roll doubles'' on both the first and second rolls.
+The number of spaces you move is the sum of all dice rolls.\\[5mm]
+What is the probability that you move \emph{at least} 12 spaces?\\[5mm]
+\textit{Hint: Draw a $6 \times 6$ grid enumerating the all possible rolls of the dice. Then sub-divide the cells where you ``roll doubles'' into another, smaller $6 \times 6$ grid within that cell. Each cell, no matter how small, is one possible outcome.}
 }
+
 
 \StartExtraCredit
 \Problem{%
