@@ -8,13 +8,13 @@
 \TABstackMath
 \TABbinary
 
-\AssignmentNumber{1}%
+\AssignmentNumber{2}%
 \CourseName{Probability and Statistics for Computer Science}
 \CourseNumber{217}
 \InstructorName{Alex Washburn}
 \DueDateYear{2023}
 \DueDateMonth{09}
-\DueDateDay{05}
+\DueDateDay{11}
 
 
 %\newenvironment{\ContactListing}[args]{begdef}{enddef}
@@ -76,13 +76,14 @@ The probability distribution for an employee's salary increase is as follows:%
 \begin{equation*}
 \Prob{\RandVar{X}} =
 \begin{cases}
-\DistMap{\frac{2}{8}}{1\%}
-\DistMap{\frac{3}{8}}{2\%}
-\DistMap{\frac{2}{8}}{3\%}
-\DistMap{\frac{1}{8}}{5\%}
+\DistMap{\frac{4}{10}}{+1\%}
+\DistMap{\frac{3}{10}}{+2\%}
+\DistMap{\frac{2}{10}}{+3\%}
+\DistMap{\frac{1}{10}}{+5\%}
 \end{cases}
-\end{equation*}
-\textit{What is the probability that after five years (five salary increases), a cumulative salary increase of $x \ge 10\%$ occurs?}
+\end{equation*}\\[5mm]
+For example, if over the course of five years an employee receives the sequence of salary increases $1\%$, $1\%$, $3\%$, $2\%$, and $5\%$ then we would say that over those five years the employee received a cumulative salary increase of $+12\%$\\[5mm]
+\textit{What is the probability that after three years (three salary increases), a cumulative salary increase of $x \ge 10\%$ occurs?}\\
 }
 
 
@@ -90,20 +91,20 @@ The probability distribution for an employee's salary increase is as follows:%
 The Federal Reserve Bank of the Unitded States targets an annual inflation rate of 2\%.
 This means that for an employee's salary to purchase the same amount of goods and services next year, their salary must increase by 2\% to match the 2\% expansion of the money supply within the economy induced by the Federal Reserve Bank.
 One measure of purchasing power used by economists to mediate difference in currency exchange rates and inflationary effects of currencies is Purchasing Power Parity (PPP).
-Each year an employee at a company will receive an adjustment in their salary's PPP.\\
-The amount an employee salary's PPP adjusts by each year is a random variable \RandVar{Y}.
+Each year an employee at a company will receive an adjustment in their salary's PPP.
+The amount an employee salary's PPP adjusts by each year is a random variable \RandVar{Y}.\\
 The probability distribution for a PPP adjustment is as follows:%
 \begin{equation*}
 \Prob{\RandVar{Y}} =
 \begin{cases}
-\DistMap{\frac{2}{8}}{-1\%}
-\DistMap{\frac{3}{8}}{\pm0\%}
-\DistMap{\frac{2}{8}}{+1\%}
-\DistMap{\frac{1}{8}}{+3\%}
+\DistMap{\frac{4}{10}}{-1\%}
+\DistMap{\frac{3}{10}}{\pm0\%}
+\DistMap{\frac{2}{10}}{+1\%}
+\DistMap{\frac{1}{10}}{+3\%}
 \end{cases}
 \end{equation*}\\[5mm]
 It is desirable for an employee's PPP to increase overtime as they accumulate skills and knowledge, commonly known as ``beating inflation.''\\[5mm]
-\textit{What is the probability that after five years (five PPP adjustments), a cumulative PPP adjustment $x$ ``beats inflation''; i.e. $x > 0\%$?}
+\textit{What is the probability that after three years (three PPP adjustments), a cumulative PPP adjustment $x$ ``beats inflation''; i.e. $x > 0\%$?}
 }
 
 
@@ -123,8 +124,8 @@ The opportunity to switch employment is a random variable \RandVar{S} with the p
 }
 
 \Problem{%
-Shockingly, employeers are not likely to higher employees who jump between employeers frequently.
-The more recently an employee has jumped between employeers the less likely they are to be able to find an opportunity to jump to a new employeer this year.
+Shockingly, companies are not likely to higher employees who jump between companies frequently.
+The more recently an employee has jumped between companies the less likely they are to be able to find an opportunity to jump to a new company this year.
 The opportunity to jump between employment is a random variable \RandVar{J} with the probability distribution:
 \begin{equation*}
 \Prob{\RandVar{J}} =
@@ -135,8 +136,41 @@ The opportunity to jump between employment is a random variable \RandVar{J} with
 \end{cases}
 \end{equation*}\\[5mm]
 As with Problem 3, if an employee does not have the opportunity to \emph{jump}, then they must \textit{stay} with their current employer and receive the PPP adjustment \RandVar{Y} from Problem 2.\\[5mm]
-\textit{What is the probability that after five years (five PPP adjustments), a cumulative PPP adjustment $x \ge 10\%$ occurs?}
+\textit{What is the probability that, after one year, a  PPP adjustment $x \ge 3\%$ occurs in each scenario?}
 }
+
+\SubProblem{Suppose that the employee did \emph{Jump} last year." Then the random variable \RandVar{J} has the probability distribution:
+\begin{equation*}
+\Prob{\RandVar{J}} =
+\begin{cases}
+\DistMap{\frac{1}{6}}{\textit{Jump}: +8\%~\text{PPP}} 
+\DistMap{\frac{5}{6}}{\textit{Stay}\;\;: \Prob{\RandVar{Y}}}
+\end{cases}
+\end{equation*}
+}
+
+\hfill
+\SubProblem{Suppose that the employee did \textbf{not} \emph{Jump} last year, but did jump the year before. Then the random variable \RandVar{J} has the probability distribution:
+\begin{equation*}
+\Prob{\RandVar{J}} =
+\begin{cases}
+\DistMap{\frac{2}{6}}{\textit{Jump}: +8\%~\text{PPP}} 
+\DistMap{\frac{4}{6}}{\textit{Stay}\;\;: \Prob{\RandVar{Y}}}
+\end{cases}
+\end{equation*}
+}
+
+\hfill
+\SubProblem{Suppose that the employee did \textbf{not} \emph{Jump} last year nor the previous year. Then the random variable \RandVar{J} has the probability distribution:
+\begin{equation*}
+\Prob{\RandVar{J}} =
+\begin{cases}
+\DistMap{\frac{3}{6}}{\textit{Jump}: +8\%~\text{PPP}} 
+\DistMap{\frac{3}{6}}{\textit{Stay}\;\;: \Prob{\RandVar{Y}}}
+\end{cases}
+\end{equation*}\\[5mm]
+}
+
 
 \StartExtraCredit
 \Problem{%
