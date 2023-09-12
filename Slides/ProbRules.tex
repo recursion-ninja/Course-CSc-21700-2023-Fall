@@ -1,0 +1,56 @@
+\documentclass{article}
+\usepackage{amsmath,amssymb}
+\usepackage{geometry}
+\usepackage{xspace}
+
+\newcommand{\Brackets}[1]{\ensuremath{\left[\;#1\;\right]}\xspace}
+\newcommand{\Parens}[1]{\ensuremath{\left(\;#1\;\right)}\xspace}
+\newcommand{\SetNote}[1]{\ensuremath{\left\{\;#1\;\right\}}\xspace}
+\newcommand{\IndexRange}[2]{\ensuremath{\texttt{{[}\,#1,\ #2\,{]}}}\xspace}
+\newcommand{\NumericRange}[2]{\ensuremath{\left[\,#1,\; #2\,\right]}\xspace}
+
+\newcommand{\Prob}[1]{\ensuremath{\mathbf{P}\Parens{#1}}\xspace}
+\newcommand{\RandVar}[1]{\ensuremath{\mathbf{#1}}\xspace}
+
+\begin{document}
+
+\section*{Sample Space}
+We define $\Omega$ as the set of \emph{all} possible outcomes of a random event. $\Omega = \left\{ \cdots \right\}$
+
+\section*{Collectively Exhaustive}
+We define the probability of \emph{no element} in $\Omega$ occurring as $0$. 
+$$\Prob{\emptyset} = 0$$
+
+\section*{Nonnegativity}
+For all $\RandVar{A}$ in $\Omega$ the probability of \RandVar{A} is not negative:
+$$\forall\,\RandVar{A}\,\in\,\Omega\quad\Prob{\RandVar{A}} \ge 0$$
+
+\section*{Normalization}
+We define the sum of the probability of all the elements in $\Omega$ as being equal to 1.
+$$1 = \sum\limits_{\RandVar{A}\,\in\,\Omega} \Prob{\RandVar{A}}$$
+
+\section*{Mutually Exclusive}
+We say \RandVar{A} and \RandVar{B} are mutually independent \emph{if and only if},  \RandVar{A} and \RandVar{B} have no overlap.
+$$\RandVar{A} \cap \RandVar{B} = \emptyset \iff \text{mutually exclusive random variables}$$
+
+\section*{Additivity}
+The probability of \RandVar{A} or \RandVar{B} occurring is:
+\begin{align*}
+\Prob{\RandVar{A} \cup \RandVar{B}} &= \Prob{\RandVar{A}} + \Prob{\RandVar{B}} - \Prob{\RandVar{A} \cap \RandVar{B}}\\
+\Prob{\RandVar{A} \cup \RandVar{B}} &= \Prob{\RandVar{A}} + \Prob{\RandVar{B}} - 0 \iff \RandVar{A}~\&~\RandVar{B} \text{~are mutually exclusive}
+\end{align*}
+
+\section*{Complement}
+The probability of \RandVar{A} not occurring is equal to 1 minus the probability \RandVar{A} occurring:
+$$\Prob{\overline{\RandVar{A}}} = 1 - \Prob{\RandVar{A}}$$
+
+\section*{Joint Probability}
+The probability of \RandVar{A} or \RandVar{B} occurring is:
+\begin{align*}
+\Prob{\RandVar{A} \cap \RandVar{B}} &= \Prob{\RandVar{A}} * \Prob{\RandVar{B}~|~\RandVar{A}} \hfill\iff \RandVar{A}~\&~\RandVar{B} \text{~dependent} \\
+\Prob{\RandVar{A} \cap \RandVar{B}} &= \Prob{\RandVar{A}} * \Prob{\RandVar{B}} \hfill\iff \RandVar{A}~\&~\RandVar{B} \text{~are independent} \\
+\Prob{\RandVar{A} \cap \RandVar{B}} &= 0 \hfill\iff \RandVar{A}~\&~\RandVar{B} \text{~are mutually exclusive} \\
+\end{align*}
+
+
+\end{document}
