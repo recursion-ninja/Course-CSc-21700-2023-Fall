@@ -47,6 +47,7 @@
 \newcommand{\Tr}[2]{\ensuremath{\tau\Parens{#1,\,#2}\xspace}}
 \newcommand{\T}[1]{\ensuremath{\tau\Parens{#1}\xspace}}
 \newcommand{\Prob}[1]{\ensuremath{P\Parens{#1}}\xspace}
+\newcommand{\ProbGiven}[2]{\ensuremath{P\Parens{#1~\,|\,~#2}}\xspace}
 \newcommand{\RandVar}[1]{\ensuremath{\mathbf{#1}}\xspace}
 \newcommand{\DistMap}[2]{~#1&\mapsto~~#2\\}
 \newcommand{\DistCondition}[2]{~#1&\text{\normalfont iff}~~#2\\}
@@ -86,6 +87,37 @@ For example, if over the course of five years an employee receives the sequence 
 \textit{What is the probability that after three years (three salary increases), a cumulative salary increase of $x \ge 10\%$ occurs?}\\
 }
 
+There are six possible \emph{combinations} of salary increases which result in a cumulative salary increase of $x \ge 10\%$. 
+
+\begin{itemize}
+\item  $\Prob{\SetNote{+5\%,~+5\%,~+5\%}} = \frac{1}{10} \times \frac{1}{10} \times \frac{1}{10} = \frac{1}{10^3}$ 
+\item  $\Prob{\SetNote{+5\%,~+5\%,~+3\%}} = \frac{1}{10} \times \frac{1}{10} \times \frac{2}{10} = \frac{2}{10^3}$
+\item  $\Prob{\SetNote{+5\%,~+5\%,~+2\%}} = \frac{1}{10} \times \frac{1}{10} \times \frac{3}{10} = \frac{3}{10^3}$
+\item  $\Prob{\SetNote{+5\%,~+5\%,~+1\%}} =  \frac{1}{10} \times \frac{1}{10} \times \frac{4}{10} = \frac{4}{10^3}$ 
+\item  $\Prob{\SetNote{+5\%,~+3\%,~+3\%}} = \frac{1}{10} \times \frac{2}{10} \times \frac{2}{10} = \frac{4}{10^3}$
+\item  $\Prob{\SetNote{+5\%,~+3\%,~+2\%}} = \frac{1}{10} \times \frac{2}{10} \times \frac{3}{10} = \frac{6}{10^3}$
+\end{itemize}
+
+Each possible \emph{combination} has can occur in a certain number of \emph{sequences}.
+
+\begin{itemize}
+\item  $\Prob{x = +15\%} = \Prob{\SetNote{+5\%,~+5\%,~+5\%}} \times \binom{3}{0} = \frac{1}{10^3} \times 1 = \frac{1}{10^3}$
+\item  $\Prob{x = +13\%} = \Prob{\SetNote{+5\%,~+5\%,~+3\%}} \times \binom{3}{1} = \frac{2}{10^3} \times 3 = \frac{6}{10^3}$
+\item  $\Prob{x = +12\%} = \Prob{\SetNote{+5\%,~+5\%,~+2\%}} \times \binom{3}{1} = \frac{3}{10^3} \times 3 = \frac{9}{10^3}$
+\item  $\Prob{x = +11\%} = \Prob{\SetNote{+5\%,~+5\%,~+1\%}} \times \binom{3}{1} +~\Prob{\SetNote{+5\%,~+3\%,~+3\%}} \times \binom{3}{2}$\\
+\hspace*{23.5mm}$ =~\frac{4}{10^3} \times 3 + \frac{4}{10^3} \times 3 = \frac{24}{10^3}$
+\item  $\Prob{x = +10\%} = \Prob{\SetNote{+5\%,~+3\%,~+2\%}} \times 3! = \frac{6}{10^3} \times 6 = \frac{36}{10^3}$\\
+\end{itemize}
+
+
+Because all cases above are mutually exclusive, $\Prob{x \ge +10\%}$ is the summation of the cases:
+\begin{align*}
+\Prob{x \ge +10\%} &= \Prob{x = +15\%} + \Prob{x = +13\%} + \Prob{x = +12\%} + \Prob{x = +11\%} = \Prob{x = +10\%}\\ 
+&= \frac{1}{10^3} + \frac{6}{10^3} + \frac{9}{10^3} + \frac{24}{10^3} + \frac{36}{10^3}\\
+&= \frac{1}{10^3} + \frac{6}{10^3} + \frac{9}{10^3} + \frac{24}{10^3} + \frac{36}{10^3}\\
+&= \frac{76}{10^3} = \frac{19}{250} = 0.076
+\end{align*}
+
 
 \Problem{%
 The Federal Reserve Bank of the Unitded States targets an annual inflation rate of 2\%.
@@ -107,6 +139,37 @@ It is desirable for an employee's PPP to increase overtime as they accumulate sk
 \textit{What is the probability that after three years (three PPP adjustments), a cumulative PPP adjustment $x$ ``beats inflation''; i.e. $x > 0\%$?}
 }
 
+There are six possible \emph{combinations} of PPP adjustments which \emph{do not} result in a cumulative PPP adjustments of $x > 0\%$, each of which occur in a certain number of \emph{sequences}.
+
+\begin{itemize}
+\item  $\Prob{\SetNote{-1\%,~-1\%,~-1\%}} = \frac{4}{10} \times \frac{4}{10} \times \frac{4}{10} = \frac{64}{10^3}$
+\item  $\Prob{\SetNote{-1\%,~-1\%,~\pm0\%}} = \frac{4}{10} \times \frac{4}{10} \times \frac{3}{10} = \frac{48}{10^3}$
+\item  $\Prob{\SetNote{-1\%,~\pm0\%,~\pm0\%}} = \frac{4}{10} \times \frac{3}{10} \times \frac{3}{10} = \frac{36}{10^3}$
+\item  $\Prob{\SetNote{-1\%,~-1\%,~+1\%}} =  \frac{4}{10} \times \frac{4}{10} \times \frac{2}{10} = \frac{32}{10^3}$ 
+\item  $\Prob{\SetNote{\pm0\%,~\pm0\%,~\pm0\%}} = \frac{3}{10} \times \frac{3}{10} \times \frac{3}{10} = \frac{27}{10^3}$ 
+\item  $\Prob{\SetNote{-1\%,~\pm0\%,~+1\%}} = \frac{4}{10} \times \frac{3}{10} \times \frac{2}{10} = \frac{24}{10^3}$
+\end{itemize}
+
+Each possible \emph{combination} has can occur in a certain number of \emph{sequences}.
+
+\begin{itemize}
+\item  $\Prob{x = -3\%} = \Prob{\SetNote{-1\%,~-1\%,~-1\%}} \times \binom{3}{0} = \frac{64}{10^3} \times 1 = \frac{64}{10^3}$
+\item  $\Prob{x = -2\%} = \Prob{\SetNote{-1\%,~-1\%,~\pm0\%}} \times \binom{3}{1} = \frac{48}{10^3} \times 3 = \frac{144}{10^3}$
+\item  $\Prob{x = -1\%} = \Prob{\SetNote{-1\%,~\pm0\%,~\pm0\%}} \times \binom{3}{2} + \Prob{\SetNote{-1\%,~-1\%,~+1\%}} \times \binom{3}{1}$\\
+\hspace*{21.5mm}$ =~\frac{36}{10^3} \times 3 + \frac{32}{10^3} \times 3 = \frac{204}{10^3}$
+\item  $\Prob{x = \pm0\%} = \Prob{\SetNote{\pm0\%,~\pm0\%,~\pm0\%}} \times \binom{3}{0} +~\Prob{\SetNote{-1\%,~\pm0\%,~+1\%}} \times 3!$\\
+\hspace*{21.5mm}$ =~\frac{27}{10^3} \times 1 + \frac{24}{10^3} \times 6 = \frac{171}{10^3}$
+\end{itemize}
+
+Because all cases above are mutually exclusive, $\Prob{x > 0\%}$ is equal to one minus the summation of the cases:
+\begin{align*}
+\Prob{x > 0\%} &= 1 - \Prob{x \le 0\%}\\
+& = 1 - \Parens{\Prob{x = -3\%} + \Prob{x = -2\%} + \Prob{x = -1\%} + \Prob{x = \pm0\%}}\\ 
+& = 1 - \Parens{\frac{64}{10^3} + \frac{144}{10^3} + \frac{204}{10^3} + \frac{171}{10^3}}\\ 
+& = 1 - \frac{583}{10^3}\\ 
+& = \frac{417}{10^3} = 0.417\\ 
+\end{align*}
+
 
 \Problem{%
 Each year, an employee who switches employment from one company to another will receive a 10\% salary increase ($+8\%$ PPP) but will not receive a raise that year.
@@ -122,6 +185,27 @@ The opportunity to switch employment is a random variable \RandVar{S} with the p
 \end{equation*}\\[5mm]
 \textit{What is the probability an employee utilizing this ``job-jumping'' strategy for one year (at most one job jump) receives a PPP adjustment $x$ which ``beats inflation;'' i.e $x > 0\%$?}
 }
+
+From the problem statement, we know the following:
+\[
+\ProbGiven{x > 0}{\RandVar{S} =~Jump} = 1
+\]
+
+Furthermore, from the definition of \Prob{\RandVar{Y}} in Problem 2, we can derive the following
+\[
+\ProbGiven{x > 0}{\RandVar{S} =~\overline{Jump}} = \Prob{\RandVar{Y} > 0} = \frac{2}{10} + \frac{1}{10} = \frac{3}{10}
+\]
+
+Using the \emph{Total Probability Theorem}, we have:
+
+\begin{align*}
+\Prob{x > 0} &= \Prob{\RandVar{S} =~Jump}\times\ProbGiven{x > 0}{\RandVar{S} =~Jump}~+~\Prob{\RandVar{S} =~\overline{Jump}}\times\ProbGiven{x > 0}{\RandVar{S} =~\overline{Jump}}\\
+&= \frac{1}{2}\times\ProbGiven{x > 0}{\RandVar{S} =~Jump}~+~\frac{1}{2}\times\ProbGiven{x > 0}{\RandVar{S} =~\overline{Jump}}\\
+&= \frac{1}{2}\times1~+~\frac{1}{2}\times\frac{3}{10}\\
+&= \frac{10}{20}~+~\frac{3}{20}\\
+&= \frac{13}{20} = 0.65
+\end{align*}
+
 
 \Problem{%
 Shockingly, companies are not likely to higher employees who jump between companies frequently.
@@ -149,6 +233,24 @@ As with Problem 3, if an employee does not have the opportunity to \emph{jump}, 
 \end{equation*}
 }
 
+From Problem 3, we know the following:
+
+\begin{itemize}
+\item $\ProbGiven{x \ge 3}{\RandVar{S} =~Jump} = 1$
+\item $\ProbGiven{x \ge 3}{\RandVar{S} =~\overline{Jump}} = \Prob{\RandVar{Y} \ge 3} = \frac{1}{10}$
+\end{itemize}
+
+Using the \emph{Total Probability Theorem}, we have:
+
+\begin{align*}
+\Prob{x \ge 3} &= \Prob{\RandVar{S} =~Jump}\times\ProbGiven{x \ge 3}{\RandVar{S} =~Jump}~+~\Prob{\RandVar{S} =~\overline{Jump}}\times\ProbGiven{x \ge 3}{\RandVar{S} =~\overline{Jump}}\\
+&= \frac{1}{6}\times\ProbGiven{x \ge 3}{\RandVar{S} =~Jump}~+~\frac{5}{6}\times\ProbGiven{x \ge 3}{\RandVar{S} =~\overline{Jump}}\\
+&= \frac{1}{6}\times1~+~\frac{5}{6}\times\frac{1}{10}\\
+&= \frac{10}{60}~+~\frac{5}{60}\\
+&= \frac{15}{60}\\
+&= \frac{1}{4} = 0.25\\
+\end{align*}
+
 \hfill
 \SubProblem{Suppose that the employee did \textbf{not} \emph{Jump} last year, but did jump the year before. Then the random variable \RandVar{J} has the probability distribution:
 \begin{equation*}
@@ -159,6 +261,17 @@ As with Problem 3, if an employee does not have the opportunity to \emph{jump}, 
 \end{cases}
 \end{equation*}
 }
+
+Similar to Problem 4(a), in this scenario we use the \emph{Total Probability Theorem} to arrive at:
+
+\begin{align*}
+\Prob{x \ge 3} &= \Prob{\RandVar{S} =~Jump}\times\ProbGiven{x \ge 3}{\RandVar{S} =~Jump}~+~\Prob{\RandVar{S} =~\overline{Jump}}\times\ProbGiven{x \ge 3}{\RandVar{S} =~\overline{Jump}}\\
+&= \frac{2}{6}\times\ProbGiven{x \ge 3}{\RandVar{S} =~Jump}~+~\frac{4}{6}\times\ProbGiven{x \ge 3}{\RandVar{S} =~\overline{Jump}}\\
+&= \frac{2}{6}\times1~+~\frac{4}{6}\times\frac{1}{10}\\
+&= \frac{20}{60}~+~\frac{4}{60}\\
+&= \frac{24}{60}\\
+&= \frac{2}{5} = 0.4
+\end{align*}
 
 \hfill
 \SubProblem{Suppose that the employee did \textbf{not} \emph{Jump} last year nor the previous year. Then the random variable \RandVar{J} has the probability distribution:
@@ -171,6 +284,17 @@ As with Problem 3, if an employee does not have the opportunity to \emph{jump}, 
 \end{equation*}\\[5mm]
 }
 
+Similar to Problem 4(a), in this scenario we use the \emph{Total Probability Theorem} to arrive at:
+
+\begin{align*}
+\Prob{x \ge 3} &= \Prob{\RandVar{S} =~Jump}\times\ProbGiven{x \ge 3}{\RandVar{S} =~Jump}~+~\Prob{\RandVar{S} =~\overline{Jump}}\times\ProbGiven{x \ge 3}{\RandVar{S} =~\overline{Jump}}\\
+&= \frac{3}{6}\times\ProbGiven{x \ge 3}{\RandVar{S} =~Jump}~+~\frac{3}{6}\times\ProbGiven{x \ge 3}{\RandVar{S} =~\overline{Jump}}\\
+&= \frac{3}{6}\times1~+~\frac{3}{6}\times\frac{1}{10}\\
+&= \frac{30}{60}~+~\frac{3}{60}\\
+&= \frac{33}{60}\\
+&= \frac{11}{20} = 0.55\\
+\end{align*}
+
 
 \StartExtraCredit
 \Problem{%
@@ -181,6 +305,7 @@ Which is the most preferable from these mutually exclusive options?\\[5mm]%
 \;\$\:\quad\text{Take the money}%
 }$%
 }
+
 
 
 \end{document}

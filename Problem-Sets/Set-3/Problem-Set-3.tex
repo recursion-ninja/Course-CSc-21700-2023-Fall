@@ -1,0 +1,184 @@
+\documentclass{ProblemSetCUNY}
+\usepackage{bussproofs} \EnableBpAbbreviations
+\usepackage{mathrsfs}
+\usepackage{stix}
+\usepackage{pgffor}
+\usepackage{bm}
+\usepackage{microtype}
+
+
+\usepackage{tabstackengine}
+\TABstackMath
+\TABbinary
+
+\AssignmentNumber{3}%
+\CourseName{Probability and Statistics for Computer Science}
+\CourseNumber{217}
+\InstructorName{Alex Washburn}
+\DueDateYear{2023}
+\DueDateMonth{09}
+\DueDateDay{18}
+
+
+%\newenvironment{\ContactListing}[args]{begdef}{enddef}
+
+\newcommand{\ProofLabelOne}[1]{\RightLabel{\ensuremath{\Parens{\mathrm{\textsc{#1}}}}\xspace}}
+\newcommand{\ProofLabelTwo}[2]{\RightLabel{\ensuremath{\Parens{\mathrm{\textsc{#1}}}\Parens{\mathrm{#2}}}\xspace}}
+
+\newcommand{\LogicCase}[1]{\item \textbf{Case}~#1:\newline}
+
+\newcommand{\DerivationFormat}[2]{\hfill\qquad#2\textsc{#1}}
+\newcommand{\Derivation}[2]{\DerivationFormat{#1}{#2~\ensuremath{\ruledelayed}~}}
+
+\newcommand{\AxiomCL}[1]{\DerivationFormat{Axiom~#1}{}}
+\newcommand{\Factivity}{\DerivationFormat{Factivity}{}}
+\newcommand{\Given}{\DerivationFormat{Hypothesis}{}}
+\newcommand{\Contrapositive}{\DerivationFormat{Contrapositive}{}}
+\newcommand{\DoubleNegation}{\DerivationFormat{Double Negation}{}}
+\newcommand{\DeMorgans}{\DerivationFormat{DeMorgans}{}}
+\newcommand{\Necitation}[1]{\Derivation{Necitation}{#1}}
+\newcommand{\Distribution}[1]{\Derivation{Distribution}{#1}}
+\newcommand{\Reflexivity}[1]{\Derivation{Reflexivity}{#1}}
+\newcommand{\ConDef}[1]{\Derivation{Connective Definition}{#1}}
+\newcommand{\Contradiction}[1]{\ensuremath{\neg \phi \land \phi}\Derivation{Contradiction}{\ensuremath{\phi = #1}}}
+\newcommand{\DedThm}[1]{\Derivation{Deduction Theorem}{#1}}
+\newcommand{\ModPon}[2]{\Derivation{Modus Ponens}{#1, #2}}
+\newcommand{\Syllogism}[2]{\Derivation{Syllogism}{#1, #2}}
+\newcommand{\Theorem}[2]{\DerivationFormat{Theorem~--~Lecture~#1,~Page~#2}{}}
+
+\newcommand{\R}[2]{\ensuremath{\World{#1}\mathrel{R}\World{#2}}\xspace}
+\newcommand{\Tr}[2]{\ensuremath{\tau\Parens{#1,\,#2}\xspace}}
+\newcommand{\T}[1]{\ensuremath{\tau\Parens{#1}\xspace}}
+\newcommand{\Prob}[1]{\ensuremath{P\Parens{#1}}\xspace}
+\newcommand{\ProbGiven}[2]{\ensuremath{P\Parens{#1\,|\,#2}}\xspace}
+\newcommand{\Event}[1]{\ensuremath{\bm{\mathsf{#1}}}\xspace}
+\newcommand{\RandVar}[1]{\ensuremath{\mathbf{#1}}\xspace}
+\newcommand{\DistMap}[2]{~#1&\mapsto~~#2\\}
+\newcommand{\DistCondition}[2]{~#1&\text{\normalfont iff}~~#2\\}
+
+\newcommand{\Hint}[1]{\textit{\textls{Hint:}~#1}}
+
+\newcommand{\One}{\ensuremath{\textbf{1}}\xspace}
+
+\newcommand{\Heads}{\ensuremath{\mathtt{H}}\xspace}
+\newcommand{\Tails}{\ensuremath{\mathtt{T}}\xspace}
+
+\newcommand{\Die}[1]{\ensuremath{\mathbf{D}_{#1}}\xspace}
+\newcommand{\Above}[1]{\ensuremath{\overline{#1}}\xspace}
+\newcommand{\Below}[1]{\ensuremath{\underline{#1}}\xspace}
+\newcommand{\Num}[1]{\ensuremath{\mathbb{#1}}\xspace}
+\newcommand{\NumA}[1]{\ensuremath{\overline{\Num{#1}}}\xspace}
+\newcommand{\NumB}[1]{\ensuremath{\underline{\Num{#1}}}\xspace}
+
+\newcommand{\Countermodel}[4]{%
+\textbf{Countermodel} $\mathcal{K}$ in #1:%
+\begin{itemize}%
+\item \ensuremath{W = \SetNote{\World{0}%
+\foreach \n in {1,...,#2}{,~\World{\n}}%
+}}%
+\item \ensuremath{\mathrel{R}~=~#3}%
+\item #4%
+\end{itemize}%
+}
+
+\begin{document}
+\CoverPage%
+
+\newcommand{\Bullet}[3]{\hspace*{4mm}\ensuremath{\Parens{\Event{#1}}}:\hspace*{2mm}#2\[#3\]\\[5mm]}
+\newcommand{\BulletLine}[3]{\hspace*{4mm}\ensuremath{\Parens{\Event{#1}}}:\hspace*{2mm}#2\hfill\ensuremath{#3}\\[5mm]}
+
+\Problem{%
+Alice and Bob each choose at random real-valued numbers $\RandVar{A}$ and $\RandVar{B}$ (respectively) from the continuous interval $\NumericRange{0}{3}$.
+We assume a uniform probability law under which the probability of an event is proportional to its area.
+Consider the following events:\\[5mm]
+\Bullet{W}
+{The magnitude of the difference of $\RandVar{A}$ and $\RandVar{B}$ is greater than $\frac{2}{3}$.}
+{\left|\,\RandVar{A} - \RandVar{B}\,\right| > \frac{2}{3}}
+\Bullet{X}
+{At least one of the numbers is greater than $\frac{2}{3}$.}
+{\RandVar{A} > \frac{2}{3}\;\lor\;\RandVar{B} > \frac{2}{3}}
+\Bullet{Y}
+{Alice’s number is greater than $\frac{2}{3}$.}
+{\RandVar{A} > \frac{2}{3}}
+\Bullet{Z}
+{The two numbers are equal.}
+{\RandVar{A} = \RandVar{B}}
+\Hint{Draw the 2D space of $\NumericRange{0}{3} \times \NumericRange{0}{3}$ and shade the event areas.}
+}
+
+\SubProblem{Find the probability \Prob{\Event{W}}.}\vfill
+
+\SubProblem{Find the probability \Prob{\Event{Z}}.}\vfill
+
+\SubProblem{Find the probability \ProbGiven{\Event{X}}{\Event{Y}}.}\vfill
+
+\SubProblem{Find the probability \ProbGiven{\Event{Y}}{\Event{X}}.}\vfill
+
+\SubProblem{Find the probability \Prob{\Event{W} \cap \Event{Y}}.}\vfill
+
+\SubProblem{Find the probability \ProbGiven{\Event{X}}{\Event{W}}.}\vfill
+
+\SubProblem{Find the probability \ProbGiven{\Event{X}}{\Event{Z}}.}\vfill
+
+
+
+\Problem{%
+You have two fair \emph{four-sided} dice, one green and one blue, called \Die{1} \& \Die{2}, respectively.\\[5mm]
+$\hspace*{8mm}\Die{1} \text{ has outcomes } \Omega_{\Die{1}} = \{\,\NumA{1},\,\NumA{2},\,\NumA{3},\,\NumA{4}\,\}$.\\
+$\hspace*{8mm}\Die{2} \text{ has outcomes } \Omega_{\Die{2}} = \{\,\NumB{1},\,\NumB{2},\,\NumB{3},\,\NumB{4}\,\}$.\\[5mm]
+Each dice roll is independent of all others, and all faces are equally likely to come out on top when the dice is rolled.
+Suppose you roll the dice twice.
+Consider the following events:\\[5mm]
+\BulletLine{A}
+{The total of two dice is \Num{8}.}
+{\RandVar{\Die{1}} + \RandVar{\Die{2}} = \Num{8}}
+\BulletLine{B}
+{At least one die resulted in \Num{4}.}
+{\RandVar{\Die{1}} = \NumA{4}\;\lor\;\RandVar{\Die{2}} = \NumB{4}}
+\BulletLine{C}
+{At least one die resulted in \Num{1}.}
+{\RandVar{\Die{1}} = \NumA{1}\;\lor\;\RandVar{\Die{2}} = \NumB{1}}
+\BulletLine{D}
+{The total of two dice is \Num{5}.}
+{\RandVar{\Die{1}} + \RandVar{\Die{2}} = \Num{5}}
+\BulletLine{E}
+{The difference between the dice is exactly \Num{1}.}
+{\left|\RandVar{\Die{1}} - \RandVar{\Die{2}}\right| = \Num{1}}
+\BulletLine{F}
+{The green die is less than the blue die.}
+{\RandVar{\Die{1}} < \RandVar{\Die{2}}}
+\Hint{Draw a $4 \times 4$ grid enumerating the all possible rolls of the dice.}%
+}
+
+\SubProblem{Is event \Event{A} independent of event \Event{B}?}\vfill
+
+\SubProblem{Is event \Event{A} independent of event \Event{C}?}\vfill
+
+\SubProblem{Are events \Event{E} and \Event{F} independent?}\vfill
+
+\SubProblem{Are events \Event{E} and \Event{F} independent given event D?}\vfill
+
+\newcommand{\Coin}[1]{\ensuremath{\mathcal{C}_{\mathbf{#1}}}}
+
+\Problem{
+Consider three coins, \Coin{1}, \Coin{2}, and \Coin{3}.
+Coins \Coin{1} and \Coin{2} are fair coins:
+$$\ProbGiven{\Heads}{\Coin{1}} = \frac{1}{2} = \ProbGiven{\Heads}{\Coin{2}}$$
+However, coin \Coin{3} is biased, yielding heads with the probability: 
+$$\ProbGiven{\Heads}{\Coin{3}} =  \frac{3}{4}$$\\
+You select uniformly at random one of  \Coin{1}, \Coin{2}, or \Coin{3}, and then toss the selected coin 3 times, yielding the outcome \SetNote{\Heads,\,\Heads,\,\Heads}.\\[5mm]
+\textit{What is the probability you selected the biased coin \Coin{3}?}
+}
+
+\StartExtraCredit
+\Problem{%
+Which is the most preferable from these mutually exclusive options?\\[5mm]%
+\setstretch{1.7}
+\hspace*{1cm}$\tabbedLongunderstack[l]{
+\,\heartsuit\,\quad\text{Pursue your passion}\\
+\;\$\:\quad\text{Take the money}%
+}$%
+}
+
+
+\end{document}
