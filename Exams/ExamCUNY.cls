@@ -1,4 +1,4 @@
-%% ProblemSetCUNY
+%% ExamCUNY
 %% Copyright 2022 Alex Washburn
 
 \LoadClass[%
@@ -21,7 +21,7 @@ numbers=noenddot
 ]{scrreprt}%
 
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{ProblemSetCUNY}[2023/02/18 v1.2.1 A LaTeX style CUNY assignments]
+\ProvidesPackage{ExamCUNY}[2023/02/18 v1.2.1 A LaTeX style CUNY assignments]
 
 \RequirePackage{lmodern}
 
@@ -43,8 +43,8 @@ top=20mm
 }
 
 
-%----------------------------- CUNY Assignment variables -------------------------
-\global\let\VarAssignmentNumber\empty%
+%----------------------------- CUNY Exam variables -------------------------
+\global\let\VarExamNumber\empty%
 \global\let\VarCourseName\empty%
 \global\let\VarCourseNumber\empty%
 \global\let\VarDueDateDay\empty%
@@ -53,7 +53,7 @@ top=20mm
 \global\let\VarInstructorName\empty%
 \global\let\VarStudentNumber\empty%
 
-\global\let\VarAssignmentNumber\relax
+\global\let\VarExamNumber\relax
 \global\let\VarCourseName\relax
 \global\let\VarCourseNumber\relax
 \global\let\VarDueDateDay\relax%
@@ -62,7 +62,7 @@ top=20mm
 \global\let\VarInstructorName\relax
 \global\let\VarStudentNumber\relax
 
-\def\AssignmentNumber#1{\def\VarAssignmentNumber{#1}}
+\def\ExamNumber#1{\def\VarExamNumber{#1}}
 \def\CourseName#1{\def\VarCourseName{#1}}
 \def\CourseNumber#1{\def\VarCourseNumber{#1}}
 \def\DueDateDay#1{\def\VarDueDateDay{#1}}
@@ -70,10 +70,10 @@ top=20mm
 \def\DueDateYear#1{\def\VarDueDateYear{#1}}
 \def\InstructorName#1{\def\VarInstructorName{#1}}
 \def\StudentNumber#1{\def\VarStudentNumber{#1}}
-%----------------------------- CUNY Assignment variables -------------------------
+%----------------------------- CUNY Exam variables -------------------------
 
 
-\RequirePackage[dvipsnames,svgnames,hyperref,table]{xcolor}
+\RequirePackage[dvipsnames,svgnames,hyperref]{xcolor}
 \KOMAoptions{twoside=false}
 
 \DeclareTOCStyleEntry[beforeskip=-0.1in]{chapter}{chapter}
@@ -238,7 +238,7 @@ padding-bottom=6mm
 \addtokomafont{subparagraph}{\normalfont}
 
 \setcounter{secnumdepth}{3}
-\renewcommand*{\thesection}{\LARGE\textsc{Problem}~\arabic{section}:}
+\renewcommand*{\thesection}{\LARGE\textsc{Question}~\arabic{section}:}
 \renewcommand*{\thesubsection}{\arabic{section}~(\alph{subsection})}
 \renewcommand*{\thesubsubsection}{\thesubsection~---~\makebox[6mm][l]{\Roman{subsubsection}:}}
 \RedeclareSectionCommands[beforeskip=-3ex,afterskip=2ex]{section,subsection,subsubsection}
@@ -248,7 +248,7 @@ padding-bottom=6mm
 %--------------------------------- Internal commands ---------------------------
 \RequirePackage{csquotes}
 \newcommand{\CourseTitle}{CSc~\VarCourseNumber~--~\VarCourseName}
-\newcommand{\AssignmentTitle}{Problem~Set~\textnumero\VarAssignmentNumber}
+\newcommand{\ExamTitle}{Examination~\textnumero\VarExamNumber}
 \newcommand{\HomeworkText}[1]{\textbf{\enquote{\,#1\,}}}
 
 \renewcommand{\maketitle}{%
@@ -259,11 +259,14 @@ padding-bottom=6mm
 \singlespacing%
 ~\vfill
 \Huge\CourseTitle\\[1cm]
-\AssignmentTitle\normalsize\\[1cm]
+\ExamTitle\normalsize\\[1cm]
 by\\[1cm]
 \Large\VarInstructorName\normalsize\\[1cm]
-Due at \textbf{\texttt{23:59}} on\\[1cm]
+Administered on\\[1cm]
 \Large\texttt{\VarDueDateYear}\;--\;\texttt{\VarDueDateMonth}\;--\;\texttt{\VarDueDateDay}\\[1cm]%
+~\vfill
+\Huge\emph{Student:}\hfill\underline{\hspace*{100mm}}\\[1cm]
+\Large Write both your first and last name on the line above%
 ~\vfill
 \end{center}
 \KOMAoptions{fontsize=10pt}
@@ -283,14 +286,18 @@ Due at \textbf{\texttt{23:59}} on\\[1cm]
 \end{titlepage}
 }
 
-\newcommand{\Problem}[1]{%
+\newcommand{\Problem}[3]{%
 \clearpage%
 \newgeometry{bottom=20mm,left=20mm,right=20mm,top=3mm}%
-\section{#1}%
+\section{%
+\hspace*{5mm}{\Large\underline{#2}}%
+\hspace*{5mm}{\Large(#1 Points)}\\[5mm]%
+#3}%
 %\restoregeometry
 }%
 
-\newcommand{\SubProblem}[1]{\subsection{\hspace*{-2mm}:~\HomeworkText{#1}}}%
+\newcommand{\SubProblem}[2]{\subsection{\hspace*{-2mm}:~(#1 Points)\\[3mm]\HomeworkText{#2}}}%
+%\newcommand{\SubProblem}[1]{\subsection{\hspace*{-2mm}:~\HomeworkText{#1}}}%
 
 \newcommand{\SubSubProblem}[1]{\subsubsection{\HomeworkText{#1}}}%
 

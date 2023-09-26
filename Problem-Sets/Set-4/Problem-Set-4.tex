@@ -1,0 +1,290 @@
+\documentclass{ProblemSetCUNY}
+\usepackage{bussproofs} \EnableBpAbbreviations
+\usepackage{mathrsfs}
+\usepackage{stix}
+\usepackage{pgffor}
+\usepackage{bm}
+\usepackage{microtype}
+
+
+\usepackage{tabstackengine}
+\TABstackMath
+\TABbinary
+
+\AssignmentNumber{4}%
+\CourseName{Probability and Statistics for Computer Science}
+\CourseNumber{217}
+\InstructorName{Alex Washburn}
+\DueDateYear{2023}
+\DueDateMonth{09}
+\DueDateDay{25}
+
+
+%\newenvironment{\ContactListing}[args]{begdef}{enddef}
+
+\newcommand{\ProofLabelOne}[1]{\RightLabel{\ensuremath{\Parens{\mathrm{\textsc{#1}}}}\xspace}}
+\newcommand{\ProofLabelTwo}[2]{\RightLabel{\ensuremath{\Parens{\mathrm{\textsc{#1}}}\Parens{\mathrm{#2}}}\xspace}}
+
+\newcommand{\LogicCase}[1]{\item \textbf{Case}~#1:\newline}
+
+\newcommand{\DerivationFormat}[2]{\hfill\qquad#2\textsc{#1}}
+\newcommand{\Derivation}[2]{\DerivationFormat{#1}{#2~\ensuremath{\ruledelayed}~}}
+
+\newcommand{\AxiomCL}[1]{\DerivationFormat{Axiom~#1}{}}
+\newcommand{\Factivity}{\DerivationFormat{Factivity}{}}
+\newcommand{\Given}{\DerivationFormat{Hypothesis}{}}
+\newcommand{\Contrapositive}{\DerivationFormat{Contrapositive}{}}
+\newcommand{\DoubleNegation}{\DerivationFormat{Double Negation}{}}
+\newcommand{\DeMorgans}{\DerivationFormat{DeMorgans}{}}
+\newcommand{\Necitation}[1]{\Derivation{Necitation}{#1}}
+\newcommand{\Distribution}[1]{\Derivation{Distribution}{#1}}
+\newcommand{\Reflexivity}[1]{\Derivation{Reflexivity}{#1}}
+\newcommand{\ConDef}[1]{\Derivation{Connective Definition}{#1}}
+\newcommand{\Contradiction}[1]{\ensuremath{\neg \phi \land \phi}\Derivation{Contradiction}{\ensuremath{\phi = #1}}}
+\newcommand{\DedThm}[1]{\Derivation{Deduction Theorem}{#1}}
+\newcommand{\ModPon}[2]{\Derivation{Modus Ponens}{#1, #2}}
+\newcommand{\Syllogism}[2]{\Derivation{Syllogism}{#1, #2}}
+\newcommand{\Theorem}[2]{\DerivationFormat{Theorem~--~Lecture~#1,~Page~#2}{}}
+
+\newcommand{\R}[2]{\ensuremath{\World{#1}\mathrel{R}\World{#2}}\xspace}
+\newcommand{\Tr}[2]{\ensuremath{\tau\Parens{#1,\,#2}\xspace}}
+\newcommand{\T}[1]{\ensuremath{\tau\Parens{#1}\xspace}}
+\newcommand{\Prob}[1]{\ensuremath{P\Parens{#1}}\xspace}
+\newcommand{\ProbGiven}[2]{\ensuremath{P\Parens{#1\,|\,#2}}\xspace}
+\newcommand{\Event}[1]{\ensuremath{\bm{\mathsf{#1}}}\xspace}
+\newcommand{\RandVar}[1]{\ensuremath{\mathbf{#1}}\xspace}
+\newcommand{\DistMap}[2]{~#1&\mapsto~~#2\\}
+\newcommand{\DistCondition}[2]{~#1&\text{\normalfont iff}~~#2\\}
+
+\newcommand{\Hint}[1]{\textit{\textls{Hint:}~#1}}
+
+\newcommand{\One}{\ensuremath{\textbf{1}}\xspace}
+
+\newcommand{\Heads}{\ensuremath{\mathtt{H}}\xspace}
+\newcommand{\Tails}{\ensuremath{\mathtt{T}}\xspace}
+
+\newcommand{\Die}[1]{\ensuremath{\mathbf{D}_{#1}}\xspace}
+\newcommand{\Above}[1]{\ensuremath{\overline{#1}}\xspace}
+\newcommand{\Below}[1]{\ensuremath{\underline{#1}}\xspace}
+\newcommand{\Num}[1]{\ensuremath{\mathbb{#1}}\xspace}
+\newcommand{\NumA}[1]{\ensuremath{\overline{\Num{#1}}}\xspace}
+\newcommand{\NumB}[1]{\ensuremath{\underline{\Num{#1}}}\xspace}
+
+
+\newcommand{\Deck}{\ensuremath{\bm{\mathcal{D}}}\xspace}
+\newcommand{\CardSuits}{\ensuremath{\bm{\mathcal{S}}}\xspace}
+\newcommand{\CardRanks}{\ensuremath{\bm{\mathcal{R}}}\xspace}
+\newcommand{\CardRank}[1]{\ensuremath{\text{\textsf{\textbf{#1}}}}\xspace}
+
+\newcommand{\SizeOf}[1]{\ensuremath{\left|#1\right| }\xspace}
+
+\newcommand{\Countermodel}[4]{%
+\textbf{Countermodel} $\mathcal{K}$ in #1:%
+\begin{itemize}%
+\item \ensuremath{W = \SetNote{\World{0}%
+\foreach \n in {1,...,#2}{,~\World{\n}}%
+}}%
+\item \ensuremath{\mathrel{R}~=~#3}%
+\item #4%
+\end{itemize}%
+}
+
+\begin{document}
+\CoverPage%
+
+\newcommand{\Bullet}[3]{\hspace*{4mm}\ensuremath{\Parens{\Event{#1}}}:\hspace*{2mm}#2\[#3\]\\[5mm]}
+\newcommand{\BulletLine}[3]{\hspace*{4mm}\ensuremath{\Parens{\Event{#1}}}:\hspace*{2mm}#2\hfill\ensuremath{#3}\\[5mm]}
+
+\newcommand{\Slot}{\ensuremath{\_\_\_}\xspace}
+
+\Problem{%
+Alice has a ``deck'' \Deck, which is a collection of $52$ playing cards.
+Each ``card'' is a unique pairing of a suit and rank sets \CardSuits and \CardRanks, respectively.
+\[\CardSuits = 
+\SetNote{
+\clubsuit,\,
+\vardiamondsuit,\,
+\spadesuit,\, 
+\varheartsuit
+}\]
+\[\CardRanks = \SetNote{
+\CardRank{2},\,
+\CardRank{3},\,
+\CardRank{4},\,
+\CardRank{5},\,
+\CardRank{6},\,
+\CardRank{7},\,
+\CardRank{8},\,
+\CardRank{9},\,
+\CardRank{10},\,
+\CardRank{J},\,
+\CardRank{Q},\,
+\CardRank{K},\,
+\CardRank{A}
+}\]
+\[\Omega = \Deck = \CardSuits \times \CardRanks = \SetNote{ (s,\,r)\;|\; s \in \CardSuits,\, r \in \CardRanks}\]
+Alice deals out a``hand,'' which is an \emph{unordered} subset of \emph{five} cards from \Deck, without replacement; i.e. since each card is unique pair of suit and rank, a hand can never contain two cards with both the same suit and rank.
+Each possible hand dealt from \Deck occurs with equal probability.\\[5mm]
+\emph{How many different possible hands can be deal from \Deck?}
+}
+
+
+\begin{minipage}[t]{.49\textwidth}
+There are $5$ cards to be dealt out from $52$ unique options.
+\[
+\Slot\qquad\Slot\qquad\Slot\qquad\Slot\qquad\Slot
+\]
+There are $52$ possibilities for the 1\textsuperscript{st} card:
+\[
+\underline{~~52~~}\qquad\Slot\qquad\Slot\qquad\Slot\qquad\Slot
+\]
+There are now $51$ cards left in \Deck,\\so there are $51$ possibilities for the 2\textsuperscript{nd} card:
+\[
+\underline{~~52~~}~\times~\underline{~~51~~}\qquad\Slot\qquad\Slot\qquad\Slot
+\]
+\Deck now only has $50$ cards remaining,\\and the pattern continues for the 3\textsuperscript{rd}, 4\textsuperscript{th}, and 5\textsuperscript{th} cards:
+\[
+\underline{~~52~~}~\times~\underline{~~51~~}~\times~\underline{~~50~~}\qquad\Slot\qquad\Slot
+\]
+\[
+\underline{~~52~~}~\times~\underline{~~51~~}~\times~\underline{~~50~~}~\times~\underline{~~49~~}\qquad\Slot
+\]
+\[
+\underline{~~52~~}~\times~\underline{~~51~~}~\times~\underline{~~50~~}~\times~\underline{~~49~~}~\times~\underline{~~48~~}
+\]
+However, this result considers all the possible \emph{orderings} of $5$ cards dealt from the deck \Deck with $52$ cards, but hands are \emph{unordered}.
+To find the number of \emph{unordered} hands, one must divide the product above by the number of possible permutations for $5$ cards, which is $\Parens{5!}$:
+\[
+\frac{52\times51\times50\times49\times48}{5!} = \binom{52}{5}
+\]
+\end{minipage}
+\begin{minipage}[t]{.49\textwidth}
+\hspace*{5mm}The answer is:
+\begin{align*}
+\binom{52}{5} &= \frac{52!}{\Parens{52 - 5}! \times 5!}\\
+&= \frac{52!}{47! \times 5!}\\
+&= \frac{52\times51\times50\times49\times48\times47!}{47! \times 5!}\\
+&= \frac{52\times51\times50\times49\times48}{5\times4!}\\
+&= \frac{52\times51\times10\times49\times48}{4!}\\
+&= 52\times51\times10\times49\times2\\
+&= 2,598,960
+\end{align*}
+\end{minipage}
+
+\newcommand{\Digits}{\ensuremath{\mathbb{D}}\xspace}
+\Problem{%
+Alice deals out a hand and notices that the rank of each card is a digit, i.e. each rank is an element of the following subset of \CardRanks:
+\[ \SetNote{
+\CardRank{2},\,
+\CardRank{3},\,
+\CardRank{4},\,
+\CardRank{5},\,
+\CardRank{6},\,
+\CardRank{7},\,
+\CardRank{8},\,
+\CardRank{9},\,
+\CardRank{10}
+} = \Digits \subset \CardRanks
+\]
+\emph{What is the probability of Alice dealing such a hand from \Deck?}
+\[\Prob{\textsc{Rank}(H_i) \in \Digits;~\;\forall i \in \NumericRange{1}{5}}\]
+}
+\begin{minipage}[t]{.48\textwidth}
+The number of cards we want to consider is a proper subset of the full \Deck.
+\[
+\SizeOf{\Digits} \times \SizeOf{\CardSuits} = 9 \times 4 = 36
+\]
+There are $5$ cards to be dealt out from the $36$ unique options.
+\[
+\Slot\qquad\Slot\qquad\Slot\qquad\Slot\qquad\Slot
+\]
+There are $36$ possibilities for the 1\textsuperscript{st} card:
+\[
+\underline{~~36~~}\qquad\Slot\qquad\Slot\qquad\Slot\qquad\Slot
+\]
+There are now $35$ \emph{digit} cards left in \Deck,\\so there are $35$ possibilities for the 2\textsuperscript{nd} card:
+\[
+\underline{~~36~~}~\times~\underline{~~35~~}\qquad\Slot\qquad\Slot\qquad\Slot
+\]
+\Deck now only has $34$ \emph{digit} cards remaining,\\the pattern continues for the 3\textsuperscript{rd}, 4\textsuperscript{th}, and 5\textsuperscript{th} cards:
+\[
+\underline{~~36~~}~\times~\underline{~~35~~}~\times~\underline{~~34~~}\qquad\Slot\qquad\Slot
+\]
+\[
+\underline{~~36~~}~\times~\underline{~~35~~}~\times~\underline{~~34~~}~\times~\underline{~~33~~}\qquad\Slot
+\]
+\[
+\underline{~~36~~}~\times~\underline{~~35~~}~\times~\underline{~~34~~}~\times~\underline{~~33~~}~\times~\underline{~~32~~}
+\]
+Similar to Problem 1, this result considers all the possible \emph{orderings} of $5$ \emph{digit} cards dealt from \Deck, but hands are \emph{unordered}.
+To find the number of \emph{unordered} hands, one must divide the product above by the number of possible permutations for $5$ cards, which is $\Parens{5!}$:
+\[
+\frac{36\times35\times34\times33\times32}{5!} = \binom{36}{5}
+\]
+\begin{align*}
+\text{\# All digit hands}& = \binom{36}{5}\\
+&= \frac{36!}{\Parens{36 - 5}! \times 5!}\\
+&= \frac{36!}{31! \times 5!}\\
+&= \frac{36\times35\times34\times33\times32\times31!}{31! \times 5!}\\
+&= \frac{36\times35\times34\times33\times32}{5\times4!}\\
+&= \frac{36\times7\times34\times33\times32}{4\times3!}\\
+&= \frac{36\times7\times34\times33\times8}{3!}\\
+&= 6\times7\times34\times33\times8\\
+&= 376,992
+\end{align*}~\vfill\end{minipage}
+\begin{minipage}[t]{.48\textwidth}
+\hspace*{5mm}With the number of ``all digit hands'' known, we can compute the probability of such a hand being dealt:
+\begin{align*}
+\Prob{\textsc{Rank}(H_i) \in \Digits;~\;\forall i \in \NumericRange{1}{5}} &= \frac{\binom{36}{5}}{\binom{52}{5}}\\
+&= \frac{376,992}{2,598,960}\\
+&= \frac{66}{455}\approx 0.145
+\end{align*}
+\end{minipage}
+
+\Problem{
+Bob flips a fair coin $100$ times.
+Bob observes that after $100$ coin flips, he observed $52$ heads (\Heads) and $48$ heads (\Tails).\\[5mm]
+\emph{What is \Prob{52~\Heads}; i.e the probability of 52 \Heads occurring in any order?}
+}
+
+Let $\Prob{\Heads} = p$ and $\Prob{\Tails} = 1 - p$.
+By using the binomial formula, we arrive at:
+
+\begin{align*}
+\Prob{52~\Heads} &= \binom{100}{52}\times p^{52} \times \Parens{1-p}^{48}
+\end{align*}
+
+Alternatively, if we assume that $p = \frac{1}{2}$, then we can take the ratio of possibilities:
+
+\begin{align*}
+\Prob{52~\Heads} &= \frac{\binom{100}{52}}{2^{100}}
+\end{align*}
+
+Simplifying the expression (not required) yields the following:
+
+\begin{align*}
+\frac{\binom{100}{52}}{2^{100}} &= \frac{100!}{52! \times 2^{100} \times \Parens{100 - 52}!}\\
+&= \frac{\Parens{2 \times 50}!}{52 \times 51 \times 50! \times 2^{50} \times 2^{50} \times 48!}\\
+&= \frac{\prod_{i=1}^{50} \Parens{2i-1}}{52 \times 51 \times 2^{50}\times 48!}\\
+&= \frac{\prod_{i=25}^{50} \Parens{2i-1}}{52 \times 51 \times 2^{50}\times \prod_{i=2}^{24}\Parens{2i}}\\
+&= \frac{51 \times 49 \times \prod_{i=27}^{50} \Parens{2i-1}}{52 \times 51 \times 2^{50} \times \prod_{i=1}^{24}\Parens{2i}}\\
+&= \frac{51 \times 50 \times 49 \times \prod_{i=27}^{50} \Parens{2i-1}}{52 \times 51 \times 50 \times 2^{50} \times \prod_{i=2}^{24}\Parens{2i}}\\
+&= \frac{5^2 \times 7^2 \times \prod_{i=27}^{50} \Parens{2i-1}}{52 \times 50 \times 2^{49} \times \prod_{i=1}^{24}\Parens{2i}}\\
+&= \frac{5^2 \times 7^2 \times \prod_{i=27}^{50} \Parens{2i-1}}{2^{49} \times \prod_{i=1}^{26}\Parens{2i}\phantom{\,}}\\
+&\approx 0.0735 \approx \frac{47 \times 2^{94}}{\phantom{4}~5\times 2^{101}}
+\end{align*}
+
+
+\StartExtraCredit
+\Problem{%
+Which is the most preferable from these mutually exclusive options?\\[5mm]%
+\setstretch{1.7}
+\hspace*{1cm}$\tabbedLongunderstack[l]{
+\,\heartsuit\,\quad\text{Pursue your passion}\\
+\;\$\:\quad\text{Take the money}%
+}$%
+}
+
+
+
+\end{document}

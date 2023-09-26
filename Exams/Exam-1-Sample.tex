@@ -1,0 +1,390 @@
+\documentclass{ExamCUNY}
+\usepackage{mathrsfs}
+\usepackage{stix}
+\usepackage{pgffor}
+\usepackage{bm}
+\usepackage{microtype}
+
+
+
+\usepackage{tabstackengine}
+\TABstackMath
+\TABbinary
+
+
+
+\ExamNumber{1}%
+\CourseName{Probability and Statistics for Computer Science}
+\CourseNumber{217}
+\InstructorName{Alex Washburn}
+\DueDateYear{2023}
+\DueDateMonth{09}
+\DueDateDay{28}
+
+
+
+
+%\newenvironment{\ContactListing}[args]{begdef}{enddef}
+
+\newcommand{\ProofLabelOne}[1]{\RightLabel{\ensuremath{\Parens{\mathrm{\textsc{#1}}}}\xspace}}
+\newcommand{\ProofLabelTwo}[2]{\RightLabel{\ensuremath{\Parens{\mathrm{\textsc{#1}}}\Parens{\mathrm{#2}}}\xspace}}
+
+\newcommand{\LogicCase}[1]{\item \textbf{Case}~#1:\newline}
+
+\newcommand{\DerivationFormat}[2]{\hfill\qquad#2\textsc{#1}}
+\newcommand{\Derivation}[2]{\DerivationFormat{#1}{#2~\ensuremath{\ruledelayed}~}}
+
+\newcommand{\AxiomCL}[1]{\DerivationFormat{Axiom~#1}{}}
+\newcommand{\Factivity}{\DerivationFormat{Factivity}{}}
+\newcommand{\Given}{\DerivationFormat{Hypothesis}{}}
+\newcommand{\Contrapositive}{\DerivationFormat{Contrapositive}{}}
+\newcommand{\DoubleNegation}{\DerivationFormat{Double Negation}{}}
+\newcommand{\DeMorgans}{\DerivationFormat{DeMorgans}{}}
+\newcommand{\Necitation}[1]{\Derivation{Necitation}{#1}}
+\newcommand{\Distribution}[1]{\Derivation{Distribution}{#1}}
+\newcommand{\Reflexivity}[1]{\Derivation{Reflexivity}{#1}}
+\newcommand{\ConDef}[1]{\Derivation{Connective Definition}{#1}}
+\newcommand{\Contradiction}[1]{\ensuremath{\neg \phi \land \phi}\Derivation{Contradiction}{\ensuremath{\phi = #1}}}
+\newcommand{\DedThm}[1]{\Derivation{Deduction Theorem}{#1}}
+\newcommand{\ModPon}[2]{\Derivation{Modus Ponens}{#1, #2}}
+\newcommand{\Syllogism}[2]{\Derivation{Syllogism}{#1, #2}}
+\newcommand{\Theorem}[2]{\DerivationFormat{Theorem~--~Lecture~#1,~Page~#2}{}}
+
+\newcommand{\R}[2]{\ensuremath{\World{#1}\mathrel{R}\World{#2}}\xspace}
+\newcommand{\Tr}[2]{\ensuremath{\tau\Parens{#1,\,#2}\xspace}}
+\newcommand{\T}[1]{\ensuremath{\tau\Parens{#1}\xspace}}
+\newcommand{\Prob}[1]{\ensuremath{P\Parens{#1}}\xspace}
+\newcommand{\ProbGiven}[2]{\ensuremath{P\Parens{#1\,|\,#2}}\xspace}
+\newcommand{\Event}[1]{\ensuremath{\bm{\mathsf{#1}}}\xspace}
+\newcommand{\RandVar}[1]{\ensuremath{\mathbf{#1}}\xspace}
+\newcommand{\DistMap}[2]{~#1&\mapsto~~#2\\}
+\newcommand{\DistCondition}[2]{~#1&\text{\normalfont iff}~~#2\\}
+
+\newcommand{\Hint}[1]{\textit{\textls{Hint:}~#1}}
+
+\newcommand{\One}{\ensuremath{\textbf{1}}\xspace}
+
+\newcommand{\Coin}[1]{\ensuremath{\mathbf{C}_{#1}}\xspace}
+\newcommand{\Heads}{\ensuremath{\mathtt{H}}\xspace}
+\newcommand{\Tails}{\ensuremath{\mathtt{T}}\xspace}
+
+\newcommand{\Die}[1]{\ensuremath{\mathbf{D}_{#1}}\xspace}
+\newcommand{\Above}[1]{\ensuremath{\overline{#1}}\xspace}
+\newcommand{\Below}[1]{\ensuremath{\underline{#1}}\xspace}
+\newcommand{\Num}[1]{\ensuremath{\mathbb{#1}}\xspace}
+\newcommand{\NumA}[1]{\ensuremath{\overline{\Num{#1}}}\xspace}
+\newcommand{\NumB}[1]{\ensuremath{\underline{\Num{#1}}}\xspace}
+
+\newcommand{\Deck}{\ensuremath{\bm{\mathcal{D}}}\xspace}
+\newcommand{\CardSuits}{\ensuremath{\bm{\mathcal{S}}}\xspace}
+\newcommand{\CardRanks}{\ensuremath{\bm{\mathcal{R}}}\xspace}
+\newcommand{\CardRank}[1]{\ensuremath{\text{\textsf{\textbf{#1}}}}\xspace}
+
+
+\newcommand{\Countermodel}[4]{%
+\textbf{Countermodel} $\mathcal{K}$ in #1:%
+\begin{itemize}%
+\item \ensuremath{W = \SetNote{\World{0}%
+\foreach \n in {1,...,#2}{,~\World{\n}}%
+}}%
+\item \ensuremath{\mathrel{R}~=~#3}%
+\item #4%
+\end{itemize}%
+}
+
+\begin{document}
+\CoverPage%
+
+\newcommand{\BulletLong}[3]{\hspace*{4mm}\ensuremath{\Parens{\Event{#1}}}:\hspace*{2mm}#2\[#3\]\\[5mm]}
+\newcommand{\BulletLine}[3]{\hspace*{4mm}\ensuremath{\Parens{\Event{#1}}}:\hspace*{2mm}#2\hfill\ensuremath{#3}\\[5mm]}
+\newcommand{\Bullet}[2]{\hspace*{4mm}\ensuremath{\Parens{\Event{#1}}}:\hspace*{2mm}#2\\[5mm]}
+
+\newcommand{\True}{\ensuremath{\bm{\mathtt{True}}}\xspace}
+\newcommand{\False}{\ensuremath{\bm{\mathtt{False}}}\xspace}
+
+\newcommand{\TrueFalse}[1]{\ensuremath{\True\;\oplus\;\False\;\colon~~{#1}}}
+
+\newcommand{\SupportFalsify}[1]{\ensuremath{\mathtt{Support}\;\oplus\;\mathtt{Falsify}\;\colon~~{#1}}}
+
+
+
+%%%%%%%%%%%%%
+% Instructions
+
+\clearpage%                                                                                                                                                                                           
+\newgeometry{bottom=20mm,left=20mm,right=20mm,top=20mm}%  
+\begin{center}
+{\Huge \underline{Examination Instructions}}
+\end{center}
+~\vspace*{5mm}
+{\Large
+\begin{itemize}
+\item Read each question carefully, preferably twice.
+\item If you do not understand a question, raise your hand and ask for clarification.
+\item There are no ``trick questions.''\\
+The most straight-forward interpretation of the problem statement is likely the correct interpretation.
+\item Show as much of your work and thought process as possible.\\
+Partial credit will be given for partially correct answers.
+\item I am looking to \emph{give} credit for correctness, not \emph{deduct} credit for mistakes.\\
+It is \emph{always better} to be more verbose than to be terse, since you will receive full credit as long some of your solution correctly conveys the answer.
+\end{itemize}
+}
+
+
+
+\newcommand{\ExamObject}[2]{%
+{\huge \underline{#1}}\\[5mm]%
+{\Large #2}\\[5mm]%
+}
+
+%%%%%%%%%%%%%
+% Combinatorial Objects
+
+\clearpage%                                                                                                                                                                                           
+\newgeometry{bottom=20mm,left=20mm,right=20mm,top=20mm}%  
+\begin{center}
+{\Huge \underline{Examination Objects Descriptions}}
+\end{center}
+
+\ExamObject{Coin}{%
+All references to a ``coin'' or ``coins'' refers to the object \Coin{}. The coin \Coin{} has \emph{two} faces.
+The faces are called ``heads'' and ``tails''denoted as \Heads and \Tails, respectively.
+\[\Omega = \SetNote{\Heads,\,\Tails}\]
+\Coin{} is a fair coin, both faces have equal chance of occurring when the coin is flipped.
+}
+
+\ExamObject{Die/Dice}{%
+All references to a ``die'' or ``dice'' refers to the object \Die{}. The die \Die{} has \emph{six} faces.
+\[\Omega = \SetNote{\Num{1},\,\Num{2},\,\Num{3},\,\Num{4},\,\Num{5},\,\Num{6}}\]
+\Die{} is a fair die, each face has an equal chance of occurring when the die is rolled.}
+
+
+\ExamObject{Deck/Card/Hand}{
+All references to a ``deck'' refers to the object \Deck, which is a collection of $52$ cards.
+Each ``card'' is a unique pairing of a suit and rank sets \CardSuits and \CardRanks, respectively.
+\[\CardSuits = 
+\SetNote{
+\clubsuit,\,
+\vardiamondsuit,\,
+\spadesuit,\, 
+\varheartsuit
+}\]
+\[\CardRanks = \SetNote{
+\CardRank{2},\,
+\CardRank{3},\,
+\CardRank{4},\,
+\CardRank{5},\,
+\CardRank{6},\,
+\CardRank{7},\,
+\CardRank{8},\,
+\CardRank{9},\,
+\CardRank{J},\,
+\CardRank{Q},\,
+\CardRank{K},\,
+\CardRank{A}
+}\]
+\[\Omega = \Deck = \CardSuits \times \CardRanks = \SetNote{ (s,\,r)\;|\; s \in \CardSuits,\, r \in \CardRanks}\]
+All references to a ``hand'' refer to an \emph{unordered} subset of \emph{five} cards from \Deck, without replacement; i.e. since each card is unique pair of suit and rank, a hand can never contain two cards with both the same suit and rank.\\[3mm]
+The dealer is fair, each possible hand dealt from \Deck occurs with equal probability.\\[3mm]
+For reference these sets have the following cardinalities:
+\[ \left|\CardSuits\right| = 4,\quad\left|\CardRanks\right| = 13,\quad\left|\Deck\right| = \left|\CardSuits\right| \times \left|\CardRanks\right| = 4 \times 13 = 52 \]
+The number of possible five card hands which can be dealt is equal to:
+\[ \binom{52}{5} = 2,598,960 \]
+}
+
+\Problem{20}{Definitions}{%
+Describe to the best of your ability the definition of each probability theory concept.
+You may use the English language, mathematical notation, or some combination of both.
+}
+
+\SubProblem{5}{Independence of a Random Variable}
+From probability rule sheet\vfill
+
+\SubProblem{5}{Mutually Exclusivity of Random Variables}
+From probability rule sheet\vfill
+
+\SubProblem{5}{Collectively Exhaustive}
+From probability rule sheet\vfill
+
+\SubProblem{5}{Conditional Probability}
+From probability rule sheet\vfill
+
+
+
+
+\Problem{20}{True or False}{%
+Decide whether each statement is \texttt{True} or \texttt{False}.\\
+}
+
+\SubProblem{4}{Alice rolls a dice \Die{} \emph{twice}.
+On the first roll Alice observes the number \RandVar{X} and on the second roll Alice observes the number \RandVar{Y}.}
+\TrueFalse{\Prob{\RandVar{X} + \RandVar{Y} \ge 4} = \frac{3}{4}}
+
+$\False \implies \Prob{\RandVar{X} + \RandVar{Y} \ge 4} = \frac{33}{36} \not = \frac{27}{36}$
+
+\SubProblem{4}{Bob rolls a dice \Die{} \emph{twice}.
+On the first roll Bob observes the number \RandVar{X} and on the second roll Bob observes the number \RandVar{Y}.
+Bob notices that \RandVar{Y} is one more than the previous roll \RandVar{X}.
+}
+\TrueFalse{\Prob{\RandVar{X} = \RandVar{Y} + 1} = \frac{1}{12}}
+
+$\False \implies \Prob{\RandVar{X} = \RandVar{Y} + 1} = \frac{5}{36} \not = \frac{3}{36}$
+
+
+\SubProblem{4}{Charlotte flips a coin \Coin{} \emph{five} times.
+Charlotte observes \emph{three} \Heads and \emph{two} \Tails (ordering does not matter).
+}
+\TrueFalse{\Prob{3~\Heads~\textbf{and}~2~\Tails} = \frac{5}{16}}%
+
+$\True \implies \Prob{3~\Heads~\textbf{and}~2~\Tails} = \frac{10}{2^5} = \frac{5}{16}$
+
+
+\SubProblem{4}{David flips a coin \Coin{} \emph{five} times.
+David observes \emph{at least two} \Tails, but forgot the outcomes of other three tosses (ordering does not matter).
+}
+\TrueFalse{\Prob{2~\Tails \ge 2} = \frac{1}{2}}%
+
+$\False \implies \Prob{2~\Tails \ge 2}  = 1 - \Prob{4~\Heads} - \Prob{5~\Heads} = 1 - \frac{4}{2^5} - \frac{1}{2^5} = \frac{27}{2^5} \not = \frac{1}{2}$
+
+
+\SubProblem{4}{Eve flips a coin \Coin{} and rolls a die \Die{}.
+Eve observes a \Heads and that the die shows the number \RandVar{X} which is \emph{odd}.}
+\TrueFalse{\Prob{\Heads \;\land\; \text{odd}(\,\RandVar{X}\,)} = \frac{3}{4}}%
+
+$\False \implies \Prob{\Heads \;\land\; \text{odd}(\,\RandVar{X}\,)} = \Prob{\Heads} \times  \Prob{\text{odd}(\,\RandVar{X}\,)} = \frac{1}{2} \times \frac{1}{2} = \frac{1}{4} \not = \frac{3}{4}$
+
+
+
+
+
+\Problem{20}{Support or Falsify}{%
+Frank has a standard deck \Deck of $52$ playing cards. Consider each statement and either:\\[5mm]
+\Bullet{Support}{State that it is $\mathtt{True}$. Explain the reason why you believe that is the case. If you feel capable of providing a proof or a sketch/outline of a proof, please do so. A proof or argument you provide does not need to be perfect to receive full credit.}
+\Bullet{Falsify}{State that it is $\mathtt{False}$. Explain the reason why you believe that is the case. If you have a counterexample which shows that the statement is false, please provide it.}
+In both cases you should articulate your reasoning clearly.
+You will receive full credit if you convey that you have thought about the statement in the correct way and arrived at the correct conclusion.
+}
+
+\SubProblem{5}{Frank deals out \emph{5} cards from the deck $\mathcal{D}$ resulting in a distinct hand.}
+\SupportFalsify{\Prob{\SetNote{
+\CardRank{A}\clubsuit,\,
+\CardRank{A}\vardiamondsuit,\,
+\CardRank{A}\spadesuit,\,
+\CardRank{A}\varheartsuit,\,
+\CardRank{2}\varheartsuit
+}} = \frac{1}{2,598,960}}
+
+$\True$, It was given on the ``Description'' page of the exam.
+
+
+\SubProblem{5}{The hand has \emph{four} cards of rank \RandVar{X}, and one card of rank \RandVar{Y}, where $\RandVar{X} \not = \RandVar{Y}$.\\We call this a ``Four of a kind''.}
+\emph{One example of such a hand:} $\SetNote{
+\CardRank{7}\clubsuit,\,
+\CardRank{7}\vardiamondsuit,\,
+\CardRank{7}\spadesuit,\,
+\CardRank{7}\varheartsuit,\,
+\CardRank{A}\varheartsuit
+}$.\\
+\SupportFalsify{\Prob{\text{``Four of a kind''}} = \frac{624}{2,598,960}}
+
+$\True, 13$ choices of rank of which 4 cards will match, $48$ cards remain in \Deck for last card. $\frac{13 \times 48}{2,598,960} =  \frac{624}{2,598,960}$
+
+\SubProblem{5}{The hand has \emph{3} cards of rank \RandVar{X}, and \emph{2} cards of ranks \RandVar{Y} and \RandVar{Z}, where $\RandVar{X} \not = \RandVar{Y} \not = \RandVar{Z}$.\\We call this a ``Three of a kind''.}
+\emph{One example of such a hand:} $\SetNote{
+\CardRank{3}\clubsuit,\,
+\CardRank{3}\vardiamondsuit,\,
+\CardRank{3}\spadesuit,\,
+\CardRank{6}\spadesuit,\,
+\CardRank{9}\spadesuit
+}$.\\
+\SupportFalsify{\Prob{\text{``Three of a kind''}} = \frac{30,576}{2,598,960}}
+
+$\True, 13$ choices of rank of which 3 cards will match, $49$ cards in \Deck for 4\textsuperscript{th} card, $48$ cards in \Deck for 5\textsuperscript{th} card. $\frac{13 \times 48 \times 49}{2,598,960} =  \frac{30,576}{2,598,960}$
+
+\SubProblem{5}{The hand has \emph{3} cards of rank \RandVar{X}, and \emph{2} cards of rank \RandVar{Y}, where $\RandVar{X} \not = \RandVar{Y}$.\\
+We call this a ``Full House''.}
+\emph{One example of such a hand:} $\SetNote{
+\CardRank{3}\clubsuit,\,
+\CardRank{3}\vardiamondsuit,\,
+\CardRank{3}\spadesuit,\,
+\CardRank{2}\spadesuit,\,
+\CardRank{2}\varheartsuit
+}$.\\
+\SupportFalsify{\Prob{\text{``Full House''}} = \frac{30,576}{2,598,960}}
+
+$\False, 13$ choices of rank of which 3 cards will match, $12$ remaining ranks of which 2 cards will match. \\$\frac{13 \times 12}{2,598,960} \not =  \frac{30,576}{2,598,960}$
+
+
+\Problem{20}{Problem 1}{%
+Gizelle rolls \emph{three} dice, \Die{1}, \Die{2}, and \Die{3} then adds the numbers together.\\
+The total sum of the die faces is $14$.\\[5mm]
+\emph{Find $\Prob{\Die{1} + \Die{2} + \Die{3} = 14}$}%
+}
+
+The sum of the following, mutually exclusive dice roll combinations:
+\begin{itemize}
+\item  $\Prob{\SetNote{\Num{6},\,\Num{6},\,\Num{2}}} \mapsto \binom{3}{1} \times \Prob{\Num{6}} \times \Prob{\Num{6}} \times \Prob{\Num{2}} = 3 \times (\frac{1}{6})^3$
+\item  $\Prob{\SetNote{\Num{6},\,\Num{5},\,\Num{3}}} \mapsto \phantom{1}3! \times \Prob{\Num{6}} \times \Prob{\Num{5}} \times \Prob{\Num{3}} = 6 \times (\frac{1}{6})^3$
+\item  $\Prob{\SetNote{\Num{6},\,\Num{4},\,\Num{4}}} \mapsto \binom{3}{2} \times \Prob{\Num{6}} \times \Prob{\Num{4}} \times \Prob{\Num{4}} = 3 \times (\frac{1}{6})^3$
+\item  $\Prob{\SetNote{\Num{5},\,\Num{5},\,\Num{4}}} \mapsto \binom{3}{2} \times \Prob{\Num{5}} \times \Prob{\Num{5}} \times \Prob{\Num{4}} = 3 \times (\frac{1}{6})^3$
+\end{itemize}
+\begin{align*}
+\Prob{\Die{1} + \Die{2} + \Die{3} = 14} &= 3 \times \left(\frac{1}{6}\right)^3 + 6 \times\left(\frac{1}{6}\right)^3 + 3 \times \left(\frac{1}{6}\right)^3 + 3 \times \left(\frac{1}{6}\right)^3  \\
+&= \frac{3 + 6 + 3 + 3}{6^3} \\
+&= \frac{15}{6^3}\\
+&= \frac{5}{2} \times \frac{1}{6^2}\\
+&\approx 0.069\overline{4}
+\end{align*}
+
+
+\Problem{20}{Problem 2}{%
+Henry flips \emph{two} coins \Coin{1} and \Coin{2}.
+For each \Heads they observe, they roll \emph{one} die \Die{}.
+Henry knows they will roll between $0$ and $2$ dice.
+However many dice Henry rolls based on the observed coin flips, they will add together the number on each die face (resulting in a sum of $0$ if no dice were rolled).\\[5mm]
+Let \RandVar{X} be the sum of the die faces Henry rolls after flipping \emph{two} coins.\\[5mm]
+\emph{Find $\Prob{\RandVar{X} = 4}$.}%
+}
+The sum of the following, mutually exclusive dice roll combinations:
+\begin{itemize}
+\item $\SetNote{\Tails,\,\Tails} = 1 \times 0$
+\item $\SetNote{\Heads,\,\Tails} = 2 \times \Prob{\Die{1} = 4}$
+\item $\SetNote{\Heads,\,\Heads} = 1 \times \Prob{\Die{1} + \Die{2} = 4}$
+\end{itemize}
+\begin{align*}
+\Prob{\RandVar{X} = 4} &= 2 \times \Prob{\Die{1} = 4} + 1 \times \Prob{\Die{1} + \Die{2} = 4}\\
+&= 2 \times \frac{6}{36} + \frac{3}{36}\\
+&= \frac{12}{36} + \frac{3}{36}\\
+&= \frac{15}{36}\\
+&= \frac{5}{12} \approx 0.41\overline{6}\\
+\end{align*}
+
+
+\Problem{20}{Problem 3}{%
+Isabelle discards two cards $c_1$ and $c_2$ from the deck \Deck, resulting in a smaller deck $\Deck^{\prime}$.
+Isabelle observes that both discarded cards have same suit \RandVar{X}.
+\[\Deck^{\prime} = \Deck \setminus \SetNote{c_1,\,c_2}\quad\text{where}\quad\textsc{Suit}(c_1) = \textsc{Suit}(c_2) = \RandVar{X} \]
+\emph{Without returning the discarded cards to the deck,} Isabelle deals out a hand from $\Deck^{\prime}$.
+All five cards in the dealt hand \Event{H} have the same suit \RandVar{Y}.
+Note that is possible $\RandVar{X} = \RandVar{Y}$ or $\RandVar{X} \not = \RandVar{Y}$.\\[5mm]
+\emph{Find the probability of dealing such a hand from the smaller deck $\Deck^{\prime}$\\ given that Isabelle has already discarded $c_1$ and $c_2$.}
+\[
+\ProbGiven{\textsc{Suit}(\RandVar{\Event{H}_i}) = \RandVar{Y};~\;\forall i \in \NumericRange{1}{5}}{\text{dealt from}~\Deck^{\prime}}
+\]
+}
+
+There are three ways the hand could be dealt with the suit $\RandVar{X} \not = \RandVar{Y}$.
+
+There is one way the hand could be dealt with the suit $\RandVar{X} = \RandVar{Y}$.
+
+\begin{align*}
+\ProbGiven{\textsc{Suit}(\RandVar{\Event{H}_i}) = \RandVar{Y};~\;\forall i \in \NumericRange{1}{5}}{\text{dealt from}~\Deck^{\prime}} &= \frac{1}{\binom{52}{5}} \times \Parens{3 \times \binom{13}{5} + 1 \times \binom{11}{5}}\\
+&= \frac{1}{\binom{52}{5}} \times \Parens{3 \times \frac{13!}{\Parens{13 - 5}! \times 5!} + \frac{11!}{\Parens{11 - 5}! \times 5!}}\\
+&= \frac{1}{\binom{52}{5}} \times \Parens{3 \times \frac{13!}{8! \times 5!} + \frac{11!}{6! \times 5!}}\\
+&= \frac{1}{\binom{52}{5}} \times \Parens{3 \times \frac{13\times12\times11\times10\times9}{5!} + \frac{11\times10\times9\times8\times7}{5!}}\\
+&= \frac{1}{\binom{52}{5}} \times \Parens{3 \times 13\times3\times11\times3 + 11\times2\times3\times7}\\
+&= \frac{\phantom{2,59}4,323}{2,598,960}\\
+\end{align*}
+
+
+\end{document}
