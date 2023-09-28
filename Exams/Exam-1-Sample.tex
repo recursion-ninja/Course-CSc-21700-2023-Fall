@@ -178,6 +178,7 @@ Each ``card'' is a unique pairing of a suit and rank sets \CardSuits and \CardRa
 \CardRank{7},\,
 \CardRank{8},\,
 \CardRank{9},\,
+\CardRank{10},\,
 \CardRank{J},\,
 \CardRank{Q},\,
 \CardRank{K},\,
@@ -378,12 +379,12 @@ There are three ways the hand could be dealt with the suit $\RandVar{X} \not = \
 There is one way the hand could be dealt with the suit $\RandVar{X} = \RandVar{Y}$.
 
 \begin{align*}
-\ProbGiven{\textsc{Suit}(\RandVar{\Event{H}_i}) = \RandVar{Y};~\;\forall i \in \NumericRange{1}{5}}{\text{dealt from}~\Deck^{\prime}} &= \frac{1}{\binom{52}{5}} \times \Parens{3 \times \binom{13}{5} + 1 \times \binom{11}{5}}\\
-&= \frac{1}{\binom{52}{5}} \times \Parens{3 \times \frac{13!}{\Parens{13 - 5}! \times 5!} + \frac{11!}{\Parens{11 - 5}! \times 5!}}\\
-&= \frac{1}{\binom{52}{5}} \times \Parens{3 \times \frac{13!}{8! \times 5!} + \frac{11!}{6! \times 5!}}\\
-&= \frac{1}{\binom{52}{5}} \times \Parens{3 \times \frac{13\times12\times11\times10\times9}{5!} + \frac{11\times10\times9\times8\times7}{5!}}\\
-&= \frac{1}{\binom{52}{5}} \times \Parens{3 \times 13\times3\times11\times3 + 11\times2\times3\times7}\\
-&= \frac{\phantom{2,59}4,323}{2,598,960}\\
+\ProbGiven{\textsc{Suit}(\RandVar{\Event{H}_i}) = \RandVar{Y};~\;\forall i \in \NumericRange{1}{5}}{\text{dealt from}~\Deck^{\prime}} &= \frac{1}{\binom{50}{5}} \times \Parens{3 \times \binom{13}{5} + 1 \times \binom{11}{5}}\\
+&= \frac{1}{\binom{50}{5}} \times \Parens{3 \times \frac{13!}{\Parens{13 - 5}! \times 5!} + \frac{11!}{\Parens{11 - 5}! \times 5!}}\\
+&= \frac{1}{\binom{50}{5}} \times \Parens{3 \times \frac{13!}{8! \times 5!} + \frac{11!}{6! \times 5!}}\\
+&= \frac{1}{\binom{50}{5}} \times \Parens{3 \times \frac{13\times12\times11\times10\times9}{5!} + \frac{11\times10\times9\times8\times7}{5!}}\\
+&= \frac{1}{\binom{50}{5}} \times \Parens{3 \times 13\times3\times11\times3 + 11\times2\times3\times7}\\
+&= \frac{\phantom{2,11}4,323}{2,118,760}\\
 \end{align*}
 
 
