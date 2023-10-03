@@ -73,7 +73,7 @@ top=20mm
 %----------------------------- CUNY Exam variables -------------------------
 
 
-\RequirePackage[dvipsnames,svgnames,hyperref]{xcolor}
+\RequirePackage[dvipsnames,svgnames,hyperref,table]{xcolor}
 \KOMAoptions{twoside=false}
 
 \DeclareTOCStyleEntry[beforeskip=-0.1in]{chapter}{chapter}
