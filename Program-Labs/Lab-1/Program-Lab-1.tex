@@ -1,0 +1,190 @@
+\documentclass{ProgramLabCUNY}
+\usepackage{bussproofs} \EnableBpAbbreviations
+\usepackage{mathrsfs}
+\usepackage{stix}
+\usepackage{pgffor}
+\usepackage{booktabs}
+\usepackage{nicematrix}
+
+\renewcommand{\arraystretch}{1.2}
+
+\usepackage{tabstackengine}
+\TABstackMath
+\TABbinary
+
+\AssignmentNumber{1}%
+\CourseName{Probability and Statistics for Computer Science}
+\CourseNumber{217}
+\InstructorName{Alex Washburn}
+\DueDateYear{2023}
+\DueDateMonth{10}
+\DueDateDay{17}
+
+
+%\newenvironment{\ContactListing}[args]{begdef}{enddef}
+
+\newcommand{\ProofLabelOne}[1]{\RightLabel{\ensuremath{\Parens{\mathrm{\textsc{#1}}}}\xspace}}
+\newcommand{\ProofLabelTwo}[2]{\RightLabel{\ensuremath{\Parens{\mathrm{\textsc{#1}}}\Parens{\mathrm{#2}}}\xspace}}
+
+\newcommand{\LogicCase}[1]{\item \textbf{Case}~#1:\newline}
+
+\newcommand{\DerivationFormat}[2]{\hfill\qquad#2\textsc{#1}}
+\newcommand{\Derivation}[2]{\DerivationFormat{#1}{#2~\ensuremath{\ruledelayed}~}}
+
+\newcommand{\AxiomCL}[1]{\DerivationFormat{Axiom~#1}{}}
+\newcommand{\Factivity}{\DerivationFormat{Factivity}{}}
+\newcommand{\Given}{\DerivationFormat{Hypothesis}{}}
+\newcommand{\Contrapositive}{\DerivationFormat{Contrapositive}{}}
+\newcommand{\DoubleNegation}{\DerivationFormat{Double Negation}{}}
+\newcommand{\DeMorgans}{\DerivationFormat{DeMorgans}{}}
+\newcommand{\Necitation}[1]{\Derivation{Necitation}{#1}}
+\newcommand{\Distribution}[1]{\Derivation{Distribution}{#1}}
+\newcommand{\Reflexivity}[1]{\Derivation{Reflexivity}{#1}}
+\newcommand{\ConDef}[1]{\Derivation{Connective Definition}{#1}}
+\newcommand{\Contradiction}[1]{\ensuremath{\neg \phi \land \phi}\Derivation{Contradiction}{\ensuremath{\phi = #1}}}
+\newcommand{\DedThm}[1]{\Derivation{Deduction Theorem}{#1}}
+\newcommand{\ModPon}[2]{\Derivation{Modus Ponens}{#1, #2}}
+\newcommand{\Syllogism}[2]{\Derivation{Syllogism}{#1, #2}}
+\newcommand{\Theorem}[2]{\DerivationFormat{Theorem~--~Lecture~#1,~Page~#2}{}}
+
+\newcommand{\R}[2]{\ensuremath{\World{#1}\mathrel{R}\World{#2}}\xspace}
+\newcommand{\Tr}[2]{\ensuremath{\tau\Parens{#1,\,#2}\xspace}}
+\newcommand{\T}[1]{\ensuremath{\tau\Parens{#1}\xspace}}
+\newcommand{\Prob}[1]{\ensuremath{P\Parens{#1}}\xspace}
+\newcommand{\RandVar}[1]{\ensuremath{\mathbf{#1}}\xspace}
+\newcommand{\DistMap}[2]{~#1&\mapsto~~#2\\}
+\newcommand{\DistCondition}[2]{~#1&\text{\normalfont iff}~~#2\\}
+
+
+\newcommand{\Heads}{\ensuremath{\mathtt{H}}\xspace}
+\newcommand{\Tails}{\ensuremath{\mathtt{T}}\xspace}
+
+
+\newcommand{\One}{\ensuremath{\textbf{1}}\xspace}
+
+\newcommand{\Door}[1]{\ensuremath{\mathbf{D}_{#1}}\xspace}
+\newcommand{\Car}[1]{\ensuremath{\mathscr{C}}\xspace}
+\newcommand{\Goat}[1]{\ensuremath{\mathscr{G}}\xspace}
+
+
+
+\newcommand{\Countermodel}[4]{%
+\textbf{Countermodel} $\mathcal{K}$ in #1:%
+\begin{itemize}%
+\item \ensuremath{W = \SetNote{\World{0}%
+\foreach \n in {1,...,#2}{,~\World{\n}}%
+}}%
+\item \ensuremath{\mathrel{R}~=~#3}%
+\item #4%
+\end{itemize}%
+}
+
+\begin{document}
+\CoverPage%
+
+\setstretch{1.2}
+
+\Practicum{A Curious Case of Choice and Chance}{%
+In this practicum, we will explore the Monty Hall Problem.
+This is a famous thought experiment in probability theory which was loosely based on a similar American television game show named \textit{Let's Make a Deal}.
+Monty Hall was the original host of \textit{Let's Make a Deal} during it's debut broadcast, and the  Monty Hall Problem in named after him. The scenario under scrutiny is the following.\\[3mm]
+You are on a game show with Monty Hall.
+There are \emph{three} doors \Door{1}, \Door{2}, and \Door{3}.
+Behind one of the doors, there is a car \Car{}, the most desirable prize.
+Behind the other two doors are goats \Goat{}, which despite being cute are still the least desirable prize.
+The one car \Car{} and the two goats \Goat{} are distributed uniformly at random behind the three doors \Door{1}, \Door{2}, and \Door{3}; such that each door has a single prize behind it. 
+On this game show you are informed of the potential prizes and also their distribution behind the doors.
+A particular random distribution of the prizes behind doors has been selected by the game show host Monty Hall before you begin to play the game.
+The prizes behind each door will not move during the game.\\[3mm]
+Now you are allowed to choose a single door $\Door{\ast} \in \SetNote{\Door{1},\,\Door{2},\, \Door{3}}$.
+At the end of the game your will receive the prize behind your chosen door.
+However, after you choose the door \Door{\ast} but before the game concludes, Monty Hall (who knows what's behind each door), opens another door $\Door{M} \in \SetNote{\Door{1},\,\Door{2},\, \Door{3}} \setminus \Door{\ast}$ revealing the prize behind $\Door{M}$ to be a goat $\Goat{}$.
+Let the remaining unopened door which you did not choose be called $\Door{\leftrightharpoons} \not \in \SetNote{\Door{\ast},\,\Door{M}}$.
+Monty Hall then offers you a choice,\\[3mm]
+\emph{``Do you want the unknown prize behind your chosen door \Door{\ast}, or do switch your selection to the other unopened door \Door{\leftrightharpoons} and receive its prize?''}\\[3mm]
+Is it advantageous to switch you choice?
+}
+
+\Practicum{Instructions}{%
+Load \texttt{Monty\_Hall.R} in RStudio.
+Look at the code beginning at \texttt{line 110}.
+The last 25 lines of the file are what you will work with.\\[4mm]
+You will experiment with different how the decisions you make, as the contestant of  \textit{Let's Make a Deal}, effect the outcome of the game show.
+There are \emph{two} decisions you make through the course of the game show.
+The first is which door to choose.
+The second is whether or not to switch doors after Monty Hall has opened a door containing a goat.\\[4mm]
+There are four distributions for the first decision:
+\begin{itemize}
+\item \texttt{Randomly\_Select\_Door()}
+\item \texttt{Always\_Select\_Door(1)}
+\item \texttt{Always\_Select\_Door(2)}
+\item \texttt{Always\_Select\_Door(3)}
+\end{itemize}
+Independently, there are three distributions for the second decision:
+\begin{itemize}
+\item \texttt{Randomly\_Respond()}
+\item \texttt{Always\_Respond\_With(FALSE)}
+\item \texttt{Always\_Respond\_With(TRUE)}
+\end{itemize}
+All the code is written for you, you will only need to make very minor changes to the variable bindings of:
+\begin{itemize}
+\item \texttt{how\_to\_choose\_door} on \texttt{line 112}
+\item \texttt{how\_to\_choose\_swap} on \texttt{line 113}
+\end{itemize}
+You will use these decision distributions to simulate the \textit{Let's Make a Deal} game show $1000$ times and observe the aggregated outcomes.
+From the observations of how different decisions influence the game show's outcome, we will determine what decisions are most advantageous to a contestant.
+}
+
+\Problem{%
+Set the following variable bindings:\\
+\texttt{how\_to\_choose\_door <- Randomly\_Select\_Door()}\\
+\texttt{how\_to\_choose\_swap <- Randomly\_Respond()}\\
+Run the entire R script.\\
+Observe the output generated in the ``Console'' and ``Plots'' frames.
+}
+\SubProblem{Include the bar-plot figure that was produced.}
+
+\SubProblem{How many times did each outcome (\texttt{Car!} and \texttt{Goat}) occur?}
+
+
+\Problem{%
+Set the following variable bindings:\\
+\texttt{how\_to\_choose\_door <- Always\_Select\_Door(1)}\\
+\texttt{how\_to\_choose\_swap <- Randomly\_Respond()}\\
+Run the entire R script.\\
+Observe the output generated in the ``Console'' and ``Plots'' frames.
+}
+\SubProblem{Include the bar-plot figure that was produced.}
+
+\SubProblem{How many times did each outcome (\texttt{Car!} and \texttt{Goat}) occur?}
+
+
+\Problem{%
+Set the following variable bindings:\\
+\texttt{how\_to\_choose\_door <- Randomly\_Select\_Door()}\\
+\texttt{how\_to\_choose\_swap <- Always\_Respond\_With(TRUE)}\\
+Run the entire R script.\\
+Observe the output generated in the ``Console'' and ``Plots'' frames.
+}
+\SubProblem{Include the bar-plot figure that was produced.}
+
+\SubProblem{How many times did each outcome (\texttt{Car!} and \texttt{Goat}) occur?}
+
+
+\Problem{%
+Set the following variable bindings:\\
+\texttt{how\_to\_choose\_door <- Randomly\_Select\_Door()}\\
+\texttt{how\_to\_choose\_swap <- Always\_Respond\_With(FALSE)}\\
+Run the entire R script.\\
+Observe the output generated in the ``Console'' and ``Plots'' frames.
+}
+\SubProblem{Include the bar-plot figure that was produced.}
+
+\SubProblem{How many times did each outcome (\texttt{Car!} and \texttt{Goat}) occur?}
+
+\Problem{%
+Think about the four simulation conditions you ran in Problems 1 -- 4.
+Consider trying other combinations of the decision distributions listed on the \textsc{Instructions} section.\\[4mm]
+\emph{From these simulations, what if any, decision procedure should a contestant take to maximize their expectation of winning the car?}
+}
+\end{document}

@@ -153,8 +153,8 @@ The table below loosely conceptualizes this transition.
 |            |    10/12    |                | Topic 5 |
 |    10/17   |    10/19    | Topic 5, **Program №  1** | Topic 5 |
 |    10/24   |    10/26    | Topic 6, **Program №  2** | Topic 6 |
-|    10/31   |    11/02    | Topic 7, **Program №  3** | Topic 7 |
-|    11/07   |    11/09    | **Program №  4**, **Skill Survey** | **Midterm II** |
+|    10/31   |    11/02    | Topic 7, **Program №  3** | Topic 7,  **Skill Survey** |
+|    11/07   |    11/09    | **Program №  4**, **Midterm II** |
 |    11/14   |    11/16    | Project grouping  | **Proposal Presentation** |
 |    11/21   |             |                   | |
 |    11/28   |    11/30    |                   | **Progress Report №  1** |
