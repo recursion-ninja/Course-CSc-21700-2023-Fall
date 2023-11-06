@@ -1,16 +1,28 @@
 # Instructions for Project Proposal
 
-Each team will give a 10-15 minute presentation, detailing their project's planned work.
+Each team will give a 5-10 minute presentation, detailing their project's planned work.
 
 At the end of your presentation, we should all understand the goals of your projects as well as the means you plan to use to achieve them.
 
 ### Deliverables: 
 
     PDF/PPTX of the slides
-    PDF of the presentation script
 
 The presentation order of groups will be determined randomly.
 **Note:** each student in the team has to speak during the presentation.
+
+### Questions your presentation should answer (non-exhaustive):
+
+  1. What question or problem will your project address as its goal?
+
+  2. How will you pursue your project goal (data analysis/simulation)?
+
+  3. What language, tools, libraries, frameworks, etc. will you use in your project?
+
+  4. What data-set(s), if any will you incorporate?
+
+  5. What clearly defines "success" for your project?
+
 
 ### Slides Guideline
 
@@ -51,13 +63,13 @@ The following layout helps define your project (adapt as you see fit):
 
 > In order to ______ (vision)
 > 
-> our product will solve ______ (target audience)
+> our project will solve ______ (target audience)
 > 
-> problem of ______ (user problem)
+> problem./question of ______ (user problem)
 > 
 > by giving them ______ (strategy).
 > 
-> We know if our product works when we see ______ (goals).
+> We know if our project works when we see ______ (goals).
 
 **Example:** In order to *improve the life of New Yorkers* (vision), our product will *solve frequent commuters'* (target audience) problem of *wasting time/being late because of not knowing when the next bus arrives* (user problem) by giving them a *responsive mobile application that displays live bus arrival times nearby* (strategy). We know if our products work when we see: *a new user successfully navigates our UI, and growing numbers of satisfied users* (goals).
 
@@ -75,15 +87,6 @@ Please practice your presentations. You should not stand up and give them cold.
 
 Look at your slides on a zoom screenshare (or similar program). The color and quality of your computer screen is way better than what the screenshare on Zoom and the projector in the classroom can reproduce.
 
-
-### Presentation Script Guidelines
-
-For each slide, you should write in full sentences what you plan on saying, and who will be saying it.
-
-Having a script for public presentations serves multiple purposes:
-
-    - Forces you to think about what exactly you will be saying. In turn this provides self-feedback and practice of sorts, making for better presentations.
-    - Helps you during the presentation. If you lose track of what you wanted to say, you can just check the script.
 
 ### Additional resources:
 

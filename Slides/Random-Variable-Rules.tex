@@ -1,0 +1,134 @@
+\documentclass{article}
+\usepackage{amsmath,amssymb}
+\usepackage{calrsfs}
+\usepackage{geometry}
+\usepackage{xspace}
+\geometry{a4paper, portrait, margin=1in}
+
+\newcommand{\Brackets}[1]{\ensuremath{\left[\;#1\;\right]}\xspace}
+\newcommand{\Parens}[1]{\ensuremath{\left(\;#1\;\right)}\xspace}
+\newcommand{\SetNote}[1]{\ensuremath{\left\{\;#1\;\right\}}\xspace}
+\newcommand{\IndexRange}[2]{\ensuremath{\texttt{{[}\,#1,\ #2\,{]}}}\xspace}
+\newcommand{\NumericRange}[2]{\ensuremath{\left[\,#1,\; #2\,\right]}\xspace}
+
+\newcommand{\Prob}[1]{\ensuremath{\mathit{P}\Parens{#1}}\xspace}
+\newcommand{\ProbGiven}[2]{\ensuremath{\mathit{P}\Parens{#1\,|\,#2}}\xspace}
+\newcommand{\RandVar}[1]{\ensuremath{\mathbf{#1}}\xspace}
+
+\newcommand{\Reals}{\ensuremath{\mathbb{R}}\xspace}
+\newcommand{\PMF}[2]{%
+\expandafter\ifx\expandafter\relax%
+\detokenize{#2}\relax\ensuremath{\rho_{{\textstyle\mathstrut}\RandVar{#1}}}\xspace\else\ensuremath{\rho_{{\textstyle\mathstrut}\RandVar{#1}}\Parens{#2}}\xspace\fi}
+
+\newcommand{\PDF}[2]{%
+\expandafter\ifx\expandafter\relax%
+\detokenize{#2}\relax\ensuremath{\mathit{f}_{{\textstyle\mathstrut}\RandVar{#1}}}\xspace\else\ensuremath{\mathit{f}_{\RandVar{{\textstyle\mathstrut}#1}}\Parens{#2}}\xspace\fi}
+
+\newcommand{\Expect}[1]{\ensuremath{\mathbb{E}\left[\,#1\,\right]}\xspace}
+\newcommand{\Variance}[1]{\ensuremath{\mathtt{Var}\Parens{#1}}\xspace}
+
+
+\begin{document}
+
+\section*{Random Variable}
+A random variable $\RandVar{X}$ is a function which \emph{measures} observations from the sample space $\Omega$ to the real numbers \Reals.
+\[
+\mathbf{X}: \Omega \mapsto \mathbb{R}
+\]
+
+
+\section*{Probability Mass Function (PMF)}
+A function from $\PMF{X}{}: \Reals \mapsto \IndexRange{0}{1}$  which outputs the probability that the input value was measured from the observation of the \emph{discrete} sample space.
+\[
+\PMF{X}{} = \Prob{\RandVar{X} = x} = \Prob{\SetNote{\RandVar{X}(\omega)=x~|~\omega \in \Omega})}
+\]
+
+
+\section*{PMF Nonnegativity}
+For all random variables $\RandVar{X}$, any probability mass function $\PMF{X}{}: \Omega \mapsto \Reals$ must,
+for all $\omega \in \Omega$,\\evaluate $\PMF{X}{\omega}$ to a non-negative value.
+\[
+\forall\,\RandVar{X}: \Omega \mapsto \Reals,\; \forall\omega \in \Omega\qquad\PMF{X}{\omega} \ge 0
+\]
+
+\section*{PMF Total Probability Theorem}
+For all random variables $\RandVar{X}$, the probabilities of all possible inputs to $\PMF{X}{}$ will total to 1.
+\[
+1 = \Prob{\Omega} = \sum\limits_{x}\; \PMF{X}{x}
+\]
+
+
+\section*{Probability Density Function (PDF)}
+A function from $\PDF{X}{}: \Reals \mapsto \IndexRange{0}{1}$  which outputs the probability that the input value was measured from the observation of the \emph{continuous} sample space.
+\[
+\Parens{\mathrm{\textit{Do not worry about the calculus which has been omitted here!}}}
+\]
+
+
+\section*{PDF Nonnegativity}
+For all random variables $\RandVar{X}$, any probability density function $\PDF{X}{}: \Reals \mapsto \IndexRange{0}{1}$ must, for all $\omega \in \Omega \subset \Reals$,\\
+evaluate $\PDF{X}{\omega}$ to a non-negative value.
+\[
+\forall\,\RandVar{X}: \Reals \mapsto \IndexRange{0}{1},\; \forall x \in \Reals\qquad\PDF{X}{x} \ge 0
+\]
+
+\section*{PDF Total Probability Theorem}
+For all random variables $\RandVar{X}$, the probabilities of all possible inputs to $\PDF{X}{}$ will total to 1.
+\[
+1 = \Prob{\Omega} = \int_{-\infty}^{\infty}\; \PDF{X}{x}dx
+\]
+
+
+\pagebreak
+
+
+\section*{Expectation of a \emph{discrete} Random Variable}
+The expectation is mean (average) value of measuring a \emph{discrete} random variable \RandVar{X}.
+\[
+\Expect{\RandVar{X}} = \sum\limits_{x}\; x*\PMF{X}{x}
+\]
+
+
+\section*{Expectation of a \emph{continuous} Random Variable}
+The expectation is mean (average) value of measuring a \emph{continuous} random variable \RandVar{X}.
+\[
+\Expect{\RandVar{X}} =\int_{-\infty}^{\infty}\; x*\PDF{X}{x}dx
+\]
+
+
+\section*{Expectation linear transformability}
+A linear transformation of a random variable \RandVar{X} results in the same linear transformation of \Expect{\RandVar{X}}.
+\[
+\forall \alpha,\,\beta \in \Reals\qquad\Expect{\alpha \times \RandVar{X} + \beta} = \alpha \times \Expect{\RandVar{X}} + \beta 
+\]
+
+
+\section*{Variance of a Random Variable}
+The variance of a random variable \RandVar{X}, denoted as \Variance{\RandVar{X}}, is a measure of dispersion;\\how far a set of numbers is spread out from their mean value.
+\[
+\Variance{\RandVar{X}} = \Expect{\Parens{\RandVar{X} - \Expect{X}}^2} = \Expect{\RandVar{X}^2} - \Parens{\Expect{\RandVar{X}}}^2
+\]
+
+
+\section*{Standard Deviation of a Random Variable}
+The standard deviation of a random variable \RandVar{X}, denoted as $\sigma_{\RandVar{X}}$, is a measure of dispersion;\\how far a set of numbers is spread out from their mean value.\\[2mm]
+The standard deviation is defined as the square root of the variance.
+\[
+\sigma_{\RandVar{X}}^2 = \Variance{\RandVar{X}}
+\]
+
+\section*{Variance Nonnegativity}
+For all random variables $\RandVar{X}$, the variance \Variance{\RandVar{X}} will always evaluate to a non-negative value.
+\[
+\forall\,\RandVar{X}: \Omega \mapsto \Reals,\; \Variance{\RandVar{X}} \ge 0
+\]
+
+
+\section*{Variance linear transformability}
+A linear transformation of a random variable \RandVar{X} results in a proportional, squared scaling of \Variance{\RandVar{X}}.
+\[
+\forall \alpha,\,\beta \in \Reals\qquad\Variance{\alpha \times \RandVar{X} + \beta} = \alpha^2 \times \Variance{\RandVar{X}}
+\]
+
+
+\end{document}

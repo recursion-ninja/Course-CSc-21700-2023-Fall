@@ -1,0 +1,210 @@
+\documentclass{ProgramLabCUNY}
+\usepackage{bussproofs} \EnableBpAbbreviations
+\usepackage{mathrsfs}
+\usepackage{stix}
+\usepackage{pgffor}
+\usepackage{booktabs}
+\usepackage{nicematrix}
+\usepackage{listings}
+
+
+\renewcommand{\arraystretch}{1.2}
+
+\usepackage{tabstackengine}
+\TABstackMath
+\TABbinary
+
+\AssignmentNumber{4}%
+\CourseName{Probability and Statistics for Computer Science}
+\CourseNumber{217}
+\InstructorName{Alex Washburn}
+\DueDateYear{2023}
+\DueDateMonth{11}
+\DueDateDay{07}
+
+
+%\newenvironment{\ContactListing}[args]{begdef}{enddef}
+
+\newcommand{\ProofLabelOne}[1]{\RightLabel{\ensuremath{\Parens{\mathrm{\textsc{#1}}}}\xspace}}
+\newcommand{\ProofLabelTwo}[2]{\RightLabel{\ensuremath{\Parens{\mathrm{\textsc{#1}}}\Parens{\mathrm{#2}}}\xspace}}
+
+\newcommand{\LogicCase}[1]{\item \textbf{Case}~#1:\newline}
+
+\newcommand{\DerivationFormat}[2]{\hfill\qquad#2\textsc{#1}}
+\newcommand{\Derivation}[2]{\DerivationFormat{#1}{#2~\ensuremath{\ruledelayed}~}}
+
+\newcommand{\AxiomCL}[1]{\DerivationFormat{Axiom~#1}{}}
+\newcommand{\Factivity}{\DerivationFormat{Factivity}{}}
+\newcommand{\Given}{\DerivationFormat{Hypothesis}{}}
+\newcommand{\Contrapositive}{\DerivationFormat{Contrapositive}{}}
+\newcommand{\DoubleNegation}{\DerivationFormat{Double Negation}{}}
+\newcommand{\DeMorgans}{\DerivationFormat{DeMorgans}{}}
+\newcommand{\Necitation}[1]{\Derivation{Necitation}{#1}}
+\newcommand{\Distribution}[1]{\Derivation{Distribution}{#1}}
+\newcommand{\Reflexivity}[1]{\Derivation{Reflexivity}{#1}}
+\newcommand{\ConDef}[1]{\Derivation{Connective Definition}{#1}}
+\newcommand{\Contradiction}[1]{\ensuremath{\neg \phi \land \phi}\Derivation{Contradiction}{\ensuremath{\phi = #1}}}
+\newcommand{\DedThm}[1]{\Derivation{Deduction Theorem}{#1}}
+\newcommand{\ModPon}[2]{\Derivation{Modus Ponens}{#1, #2}}
+\newcommand{\Syllogism}[2]{\Derivation{Syllogism}{#1, #2}}
+\newcommand{\Theorem}[2]{\DerivationFormat{Theorem~--~Lecture~#1,~Page~#2}{}}
+
+\newcommand{\R}[2]{\ensuremath{\World{#1}\mathrel{R}\World{#2}}\xspace}
+\newcommand{\Tr}[2]{\ensuremath{\tau\Parens{#1,\,#2}\xspace}}
+\newcommand{\T}[1]{\ensuremath{\tau\Parens{#1}\xspace}}
+\newcommand{\Prob}[1]{\ensuremath{P\Parens{#1}}\xspace}
+\newcommand{\RandVar}[1]{\ensuremath{\mathbf{#1}}\xspace}
+\newcommand{\DistMap}[2]{~#1&\mapsto~~#2\\}
+\newcommand{\DistCondition}[2]{~#1&\text{\normalfont iff}~~#2\\}
+
+
+\newcommand{\Heads}{\ensuremath{\mathtt{H}}\xspace}
+\newcommand{\Tails}{\ensuremath{\mathtt{T}}\xspace}
+
+
+\newcommand{\One}{\ensuremath{\textbf{1}}\xspace}
+
+\newcommand{\Door}[1]{\ensuremath{\mathbf{D}_{#1}}\xspace}
+\newcommand{\Car}[1]{\ensuremath{\mathscr{C}}\xspace}
+\newcommand{\Goat}[1]{\ensuremath{\mathscr{G}}\xspace}
+
+
+
+\newcommand{\Countermodel}[4]{%
+\textbf{Countermodel} $\mathcal{K}$ in #1:%
+\begin{itemize}%
+\item \ensuremath{W = \SetNote{\World{0}%
+\foreach \n in {1,...,#2}{,~\World{\n}}%
+}}%
+\item \ensuremath{\mathrel{R}~=~#3}%
+\item #4%
+\end{itemize}%
+}
+
+\begin{document}
+\CoverPage%
+
+\setstretch{1.2}
+
+\Practicum{A Curious Case of Choice and Chance}{%
+In this practicum, we will learn about Normal Distribution in R. We will cover different functions which helps in generating the normal distribution. Along with this, we will also include graphs for easy representation and understanding.\\[5mm]
+What is Normal Distribution in R?
+Generally, it is observed that the collection of random data from independent sources is distributed normally. We get a bell shape curve on plotting a graph with the value of the variable on the horizontal axis and the count of the values in the vertical axis. 
+The center of the curve represents the mean \Parens{\mu} of the dataset.\\[5mm]
+R has four inbuilt functions related to the Normal Distribution:
+\begin{itemize}
+\item \texttt{dnorm()}
+\item \texttt{qnorm()} \emph{(we skip this one)}
+\item \texttt{pnorm()}
+\item \texttt{rnorm()}
+\end{itemize}
+}
+\pagebreak
+
+
+\Problem{%
+Syntax: \texttt{dnorm(x, mean, sd)}\\[2mm]
+The function \texttt{dnorm()} gets the \emph{exact} probability of the measurement \text{x} occurring within the normal distribution having $\mu = \texttt{mean}$ and $\sigma = \texttt{sd}$.\\[2mm]
+Let's explore using this function.
+Create a sequence of numbers between $-10$ and $10$ incrementing by $0.1$.
+}
+\begin{lstlisting}[language=R]
+x <- seq(-20, 20, by = .1)
+y <- dnorm(x, mean = 5.0, sd = 1.0)
+plot(x,y, main = "Normal Distribution", col = "blue")
+axis(1, at = seq(-20, 20, by = 5))
+\end{lstlisting}
+\SubProblem{Include the plot  that was produced.}
+\vfill
+\SubProblem{What is the mean value of the plot (your best guess)?}
+\vfill
+
+
+\Problem{%
+Syntax: \texttt{pnorm(x, mean, sd)}\\[2mm]
+The function \texttt{pnorm()} gets the \emph{exact} probability that a measurement \RandVar{X} will be less than the specified \text{x} within the normal distribution having $\mu = \texttt{mean}$ and $\sigma = \texttt{sd}$.
+This is a \emph{cumulative} density function for the Normal Distribution.\\[2mm]
+Let's compare \texttt{pnorm()} to \texttt{dnorm()} .
+Again, create a sequence of numbers between $-10$ and $10$ incrementing by $0.1$.
+}
+\begin{lstlisting}[language=R]
+x <- seq(-20, 20, by = .1)
+y <- pnorm(x, mean = 5.0, sd = 1.0)
+plot(x,y, main = "Normal Distribution", col = "red")
+axis(1, at = seq(-20, 20, by = 5))
+\end{lstlisting}
+\SubProblem{Include the plot that was produced.}
+\vfill
+\SubProblem{In your own words, how does the plot of \texttt{pnorm()} compare to that of \texttt{dnorm()}?}
+\vfill
+
+\Problem{%
+Let's try to better understand the continuous density function exposed by \texttt{pnorm()}.
+To do so, we will subtract the individual probabilities of \texttt{dnorm()} from the corresponding \emph{cumulative} values of \texttt{pnorm()}.
+Let's create another plot int he same range:
+}
+\begin{lstlisting}[language=R]
+x <- seq(-20, 20, by = .1)
+a <- dnorm(x, mean = 5.0, sd = 1.0)
+b <- pnorm(x, mean = 5.0, sd = 1.0)
+y <- b - aplot(x,y, main = "Normal Distribution", col = "purple")
+axis(1, at = seq(-20, 20, by = 5))
+\end{lstlisting}
+\SubProblem{Include the plot that was produced.}
+\vfill
+\SubProblem{In your own words, what does this plot represent?}
+\vfill
+
+
+\Problem{%
+We'll conclude our exploration of \texttt{dnorm()} and \texttt{pnorm()} by combining our plots for clarity and reinterpreting the results.
+Let's create a plot of all three curves:
+}
+\begin{lstlisting}[language=R]
+x <- seq(-20, 20, by = .1)
+a <- dnorm(x, mean = 5.0, sd = 1.0)
+b <- pnorm(x, mean = 5.0, sd = 1.0)
+y <- b - a
+y_limits <- c(-0.1, 1.0)
+plot(x,a, main = "Normal Distribution", col = "blue", ylim=y_limits)
+par(new=TRUE)
+plot(x,b, main = "Normal Distribution", col = "red", ylim=y_limits)
+par(new=TRUE)
+plot(x,y, main = "Normal Distribution", col = "purple", ylim=y_limits)
+axis(1, at = seq(-20, 20, by = 5))
+axis(2, at = seq(0, 1, by = 0.2))
+labels <- c(
+    substitute(bold('dnorm()')),
+    substitute(bold('pnorm()')),
+    substitute(bold('pnorm() - dnorm()')))
+legend(-20, 0.95, legend=labels, col=c("red", "blue","purple"), lty=1:2, cex=0.8)
+\end{lstlisting}
+\SubProblem{Include the plot that was produced.}
+\vfill
+\SubProblem{In your own words, for a given $x$ value (vertical line), how do the distances between the corresponding $y$ on the three curves relate to each other?}
+\vfill
+
+
+\Problem{%
+Syntax: \texttt{rnorm(n, mean, sd)}\\[2mm]
+The function \texttt{rnorm()} generates a vector of $N=\texttt{n}$ random measurements sampled from the normal distribution having $\mu = \texttt{mean}$ and $\sigma = \texttt{sd}$.\\[2mm]
+Let's look into using this last function.
+Repeat an experiment 1 million times and plot the data as instructed below:
+}
+\begin{lstlisting}[language=R]
+n <- 1000000
+y <- rnorm(n, mean = 5.0, sd = 1.0)
+df <- as.data.frame(table(y))
+x_limits <- c(0,10)
+y_limits <- c(0,n/20)
+hist(y, main = "Normal Distribution", col = "green",
+    nclass=100, xlim=x_limits, ylim=y_limits)
+axis(1, at = seq(0, 10, by = 1))
+\end{lstlisting}
+\SubProblem{Include the plot  that was produced.}
+\vfill
+\SubProblem{How closely does the plot produced match to the theoretically perfect plot in Problem 1?}
+\vfill
+
+
+\end{document}

@@ -277,14 +277,14 @@ Consider each statement and regarding the following\\\emph{joint} probability ma
 
 \SubProblem{5}{\SupportFalsify{\forall x, y\quad\PMF{X\vert Y}{x\,\vert\,2}~<~\PMF{Y\vert X}{y\,\vert\,2}}}
 \[
-\underline{\False}\qquad\exists x, y \text{~such that~}\PMF{X\vert Y}{x\,\vert\,2}~\not<~\PMF{Y\vert X}{y\,\vert\,2}\quad \text{~counter-example~} \PMF{X,Y}{3,2} \not< \PMF{X,Y}{2,1} \equiv \frac{16}{68} \not< \frac{6}{68} 
+\underline{\False}\qquad\exists x, y \text{~such that~}\PMF{X\vert Y}{x\,\vert\,2}~\not<~\PMF{Y\vert X}{y\,\vert\,2}\quad \text{~counter-example~} \PMF{X,Y}{3,2} \not< \PMF{X,Y}{2,1} \equiv \frac{16}{22} \not< \frac{6}{12}
 \]
 \vfill
 
 
 \SubProblem{5}{\SupportFalsify{\frac{1}{2}~<~\Prob{\RandVar{X} \;<\; \RandVar{Y}}}}
 \[
-\underline{\False}\qquad\frac{1}{2}~<~\Prob{\RandVar{X} \;<\; \RandVar{Y}} = \sum_{i=1}^{3} \sum_{j=1}^{i - 1} \PMF{X,Y}{j,\,i} = \frac{6}{68} + \frac{9}{68} + \frac{16}{68} = \frac{31}{68} \approx 0.456
+\underline{\False}\qquad\frac{1}{2}~<~\Prob{\RandVar{X} \;<\; \RandVar{Y}} = \sum_{i=1}^{3} \sum_{j=i+1}^{3} \PMF{X,Y}{j,\,i} = \frac{2}{68} + \frac{1}{68} + \frac{2}{68} = \frac{5}{68} \approx 0.07353
 \]
 \vfill
 
